@@ -476,7 +476,7 @@
                     <div>
                       <div class="text-uppercase text-muted fw-bold" style="font-size: 0.72rem; letter-spacing: 0.05em;">Pengembang Media Pembelajaran:</div>
                       <div class="fw-bold fs-6 text-dark">Asriza Rinandar, S.Pd</div>
-                      <div class="text-secondary small">Guru Kelas VI-a &middot; UPT SPF SD Inpres 105285 Tandam Hilir I</div>
+                      <div class="text-secondary small">NIP. 19800907 202221 1004 &middot; Guru Kelas VI-a &middot; UPT SPF SD Inpres 105285 Tandam Hilir I</div>
                     </div>
                   </div>
                 </div>
@@ -578,6 +578,7 @@
                       <div>
                         <div class="text-uppercase text-muted fw-bold" style="font-size: 0.7rem;">Guru Kelas VI-a (Pengembang)</div>
                         <div class="fw-bold text-dark fs-6">Asriza Rinandar, S.Pd</div>
+                        <div class="text-secondary small" style="font-size: 0.78rem;">NIP. 19800907 202221 1004</div>
                       </div>
                     </div>
                     <div class="small text-secondary mb-1">
@@ -1511,7 +1512,7 @@
                 <div class="pt-4 border-bottom d-inline-block fw-bold text-dark" style="width: 200px;">
                   Asriza Rinandar, S.Pd
                 </div>
-                <div class="small text-muted mt-1">NIP. Pengembang Media</div>
+                <div class="small text-muted mt-1">NIP. 19800907 202221 1004</div>
               </div>
             </div>
 
@@ -1650,7 +1651,7 @@
             <div class="pt-4 border-bottom d-inline-block fw-bold text-dark" style="width: 200px;">
               Asriza Rinandar, S.Pd
             </div>
-            <div class="small text-muted mt-1">NIP. Pengembang Media</div>
+            <div class="small text-muted mt-1">NIP. 19800907 202221 1004</div>
           </div>
         </div>
 
@@ -1942,6 +1943,7 @@
     let activeStudent = null;
     const activeGuru = {
       nama: "Asriza Rinandar, S.Pd",
+      nip: "19800907 202221 1004",
       jabatan: "Guru Kelas VI-a",
       satuan: "UPT SPF SD Inpres 105285 Tandam Hilir I",
       peran: "Pengembang & Pengampu Media"
@@ -2145,7 +2147,7 @@
       // Home Greeting
       document.getElementById("home-greeting-label").textContent = "Selamat Datang di Ruang Pengampu:";
       document.getElementById("home-greeting-name").textContent = `Bapak ${activeGuru.nama}`;
-      document.getElementById("home-greeting-no").textContent = "Pengembang Media";
+      document.getElementById("home-greeting-no").textContent = `NIP. ${activeGuru.nip}`;
       document.getElementById("home-greeting-nis").textContent = "Kelas VI-a";
       document.getElementById("home-greeting-nisn").textContent = "UPT SPF SD Inpres 105285";
       document.getElementById("quiz-student-badge").textContent = "Pratinjau Guru";
