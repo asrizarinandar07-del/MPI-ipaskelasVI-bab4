@@ -1445,10 +1445,10 @@
               <!-- Cap Skor Nilai Akhir -->
               <div class="col-sm-4 text-center">
                 <div class="d-inline-flex flex-column align-items-center">
-                  <div class="cert-seal mb-1" id="rapor-seal-skor">
-                    <span id="rapor-skor-angka">0</span>
+                  <div class="cert-seal mb-1" id="rapor-seal-skor" style="background: #f1f5f9; color: #94a3b8; border: 3px dashed #cbd5e1;">
+                    <span id="rapor-skor-angka">-</span>
                   </div>
-                  <div class="fw-bold small text-dark" id="rapor-predikat-badge">Predikat: Baik</div>
+                  <div class="small text-muted" id="rapor-predikat-badge">-</div>
                 </div>
               </div>
             </div>
@@ -1458,9 +1458,9 @@
               <div class="fw-bold text-dark small mb-1">
                 <i class="bi bi-chat-quote-fill text-primary me-1"></i> Catatan Capaian Belajar Guru:
               </div>
-              <p class="small text-secondary mb-0" id="rapor-catatan-guru" style="line-height: 1.6;">
-                Siswa telah menyelesaikan media pembelajaran interaktif kearifan lokal Melayu, Karo, dan Simalungun.
-              </p>
+              <div class="small text-secondary mb-0" id="rapor-catatan-guru" style="line-height: 1.6;">
+                Belum ada data nilai. Silakan kerjakan Kuis Asesmen terlebih dahulu.
+              </div>
             </div>
 
             <!-- Rincian Capaian Materi Modul -->
@@ -1470,29 +1470,29 @@
                   <tr>
                     <th style="width: 40px;">No</th>
                     <th>Fokus Materi Pembelajaran</th>
-                    <th style="width: 130px;">Keterangan</th>
+                    <th style="width: 150px;">Keterangan</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td class="text-center">1</td>
                     <td><strong>Konsep Kebhinekaan:</strong> Memahami toleransi, persatuan dalam keragaman suku di Sumatera Utara.</td>
-                    <td class="text-center text-success"><i class="bi bi-check-circle-fill me-1"></i> Tuntas</td>
+                    <td class="text-center" id="rapor-status-materi-1"><span class="text-muted">-</span></td>
                   </tr>
                   <tr>
                     <td class="text-center">2</td>
                     <td><strong>Budaya Melayu:</strong> Memahami tradisi Tepung Tawar, adab santun berbicara, dan musyawarah.</td>
-                    <td class="text-center text-success"><i class="bi bi-check-circle-fill me-1"></i> Tuntas</td>
+                    <td class="text-center" id="rapor-status-materi-2"><span class="text-muted">-</span></td>
                   </tr>
                   <tr>
                     <td class="text-center">3</td>
                     <td><strong>Budaya Karo:</strong> Memahami falsafah kekerabatan Rakut Sitelu, pesta Kerja Tahun, dan gotong royong Aron.</td>
-                    <td class="text-center text-success"><i class="bi bi-check-circle-fill me-1"></i> Tuntas</td>
+                    <td class="text-center" id="rapor-status-materi-3"><span class="text-muted">-</span></td>
                   </tr>
                   <tr>
                     <td class="text-center">4</td>
                     <td><strong>Budaya Simalungun:</strong> Memahami falsafah Habonaron Do Bona (kejujuran), Tor-tor Sombah, dan Hiou.</td>
-                    <td class="text-center text-success"><i class="bi bi-check-circle-fill me-1"></i> Tuntas</td>
+                    <td class="text-center" id="rapor-status-materi-4"><span class="text-muted">-</span></td>
                   </tr>
                 </tbody>
               </table>
@@ -2019,6 +2019,7 @@
       renderQuizPalette();
       renderRekapSiswaTable();
       renderKunciJawabanAccordion();
+      generateRapor();
       updateTanggalCetak();
     });
 
@@ -2071,12 +2072,20 @@
 
       if (siswa) {
         activeStudent = siswa;
+        const studentRekap = rekapSiswaData.find(s => s.no === siswa.no);
+        quizScore = (studentRekap && studentRekap.skor !== null) ? studentRekap.skor : 0;
+        studentAnswers = new Array(dataKuis.length).fill(null);
+        currentQuizIndex = 0;
+
         document.getElementById("display-nama-siswa").textContent = siswa.nama;
         document.getElementById("display-no-absen").textContent = siswa.no;
         document.getElementById("display-nis").textContent = siswa.nis;
         document.getElementById("display-nisn").textContent = siswa.nisn;
         document.getElementById("card-identitas-terpilih").classList.remove("d-none");
         document.getElementById("btn-mulai-belajar").removeAttribute("disabled");
+
+        generateRapor();
+        renderQuizQuestion();
       }
     }
 
@@ -2166,37 +2175,46 @@
 
       let totalSkor = 0;
       let countTuntas = 0;
+      let countMengerjakan = 0;
 
       rekapSiswaData.forEach(s => {
-        const isTuntas = (s.status === "Tuntas" && s.skor !== null);
-        if (isTuntas) {
+        const hasDoneQuiz = (s.skor !== null);
+        const isTuntas = hasDoneQuiz && s.skor >= 75;
+
+        if (hasDoneQuiz) {
           totalSkor += s.skor;
-          countTuntas++;
+          countMengerjakan++;
+          if (isTuntas) countTuntas++;
         }
 
         const tr = document.createElement("tr");
 
         // Format Status Belajar
-        const statusBadge = isTuntas 
-          ? `<span class="badge bg-success-subtle text-success border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Tuntas</span>`
-          : `<span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle"><i class="bi bi-clock me-1"></i>Belum Mengerjakan</span>`;
+        let statusBadge = `<span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle"><i class="bi bi-clock me-1"></i>Belum Mengerjakan</span>`;
+        if (hasDoneQuiz) {
+          if (isTuntas) {
+            statusBadge = `<span class="badge bg-success-subtle text-success border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Tuntas</span>`;
+          } else {
+            statusBadge = `<span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle"><i class="bi bi-exclamation-triangle me-1"></i>Perlu Bimbingan</span>`;
+          }
+        }
 
         // Format Skor: '-' jika belum selesai
-        const skorDisplay = isTuntas 
+        const skorDisplay = hasDoneQuiz 
           ? `<span class="text-dark fw-bold fs-6">${s.skor}</span>`
           : `<span class="text-muted fw-bold">-</span>`;
 
         // Format Predikat: '-' jika belum selesai
         let predikatDisplay = `<span class="text-muted">-</span>`;
-        if (isTuntas) {
+        if (hasDoneQuiz) {
           const predikatBadgeClass = s.skor >= 85 
             ? "bg-success-subtle text-success border border-success-subtle" 
-            : (s.skor >= 70 ? "bg-primary-subtle text-primary border border-primary-subtle" : "bg-warning-subtle text-warning border");
+            : (s.skor >= 75 ? "bg-primary-subtle text-primary border border-primary-subtle" : "bg-warning-subtle text-warning-emphasis border border-warning-subtle");
           predikatDisplay = `<span class="badge ${predikatBadgeClass}">${s.predikat}</span>`;
         }
 
         // Tombol Aksi: Aktif hanya jika siswa sudah selesai kuis
-        const actionBtn = isTuntas
+        const actionBtn = hasDoneQuiz
           ? `<button class="btn btn-sm btn-outline-success py-1 px-2 fw-semibold" onclick="cetakRaporSiswaDariGuru(${s.no})" title="Cetak Rapor/Sertifikat Siswa">
               <i class="bi bi-printer me-1"></i> Cetak Rapor
             </button>`
@@ -2225,16 +2243,16 @@
       }
       if (kpiTuntasSub) {
         const percentTuntas = Math.round((countTuntas / rekapSiswaData.length) * 100);
-        kpiTuntasSub.textContent = `${percentTuntas}% Ketuntasan`;
+        kpiTuntasSub.textContent = `${percentTuntas}% Ketuntasan KKM (≥75)`;
       }
 
       const kpiRata = document.getElementById("kpi-rata-rata");
       const kpiRataSub = document.getElementById("kpi-rata-sub");
       if (kpiRata) {
-        if (countTuntas > 0) {
-          const rataRata = (totalSkor / countTuntas).toFixed(1);
+        if (countMengerjakan > 0) {
+          const rataRata = (totalSkor / countMengerjakan).toFixed(1);
           kpiRata.textContent = rataRata;
-          if (kpiRataSub) kpiRataSub.textContent = `Dari ${countTuntas} siswa tuntas`;
+          if (kpiRataSub) kpiRataSub.textContent = `Dari ${countMengerjakan} siswa selesai kuis`;
         } else {
           kpiRata.textContent = "-";
           if (kpiRataSub) kpiRataSub.textContent = "Belum ada data kuis";
@@ -2248,8 +2266,8 @@
       const siswa = rekapSiswaData.find(s => s.no === noAbsen);
       if (!siswa) return;
 
-      if (siswa.status !== "Tuntas" || siswa.skor === null) {
-        alert(`Ananda ${siswa.nama} belum menyelesaikan kuis asesmen.\n\nNilai dan Kartu Capaian Belajar baru dapat dicetak setelah siswa yang bersangkutan menyelesaikan 8 butir soal kuis.`);
+      if (siswa.skor === null) {
+        alert(`Ananda ${siswa.nama} belum menyelesaikan kuis asesmen.\n\nNilai dan Kartu Capaian Belajar baru dapat dicetak setelah siswa yang bersangkutan menyelesaikan butir soal kuis.`);
         return;
       }
 
@@ -2320,6 +2338,11 @@
       const activeBtn = document.getElementById(`nav-${viewId}`);
       if (activeBtn) activeBtn.classList.add('active');
 
+      // Jika membuka view rapor, perbarui data tampilan rapor terkini
+      if (viewId === 'rapor') {
+        generateRapor();
+      }
+
       // Jika ada instruksi sub-tab khusus (misal modul-2)
       if (viewId === 'modul-2' && subTab) {
         const tabTrigger = document.getElementById(`tab-${subTab}`);
@@ -2361,6 +2384,8 @@
         document.getElementById("nav-links-zone").classList.add("d-none");
         document.getElementById("nav-user-session").classList.remove("d-flex");
         document.getElementById("nav-user-session").classList.add("d-none");
+
+        generateRapor();
 
         // Kembali ke Welcome
         navTo('welcome');
@@ -2577,8 +2602,8 @@
         const sIdx = rekapSiswaData.findIndex(s => s.no === activeStudent.no);
         if (sIdx !== -1) {
           rekapSiswaData[sIdx].skor = quizScore;
-          rekapSiswaData[sIdx].status = "Tuntas";
-          rekapSiswaData[sIdx].predikat = quizScore >= 85 ? "Sangat Baik (Bintang)" : (quizScore >= 70 ? "Baik (Duta)" : "Cukup");
+          rekapSiswaData[sIdx].status = quizScore >= 75 ? "Tuntas" : "Perlu Bimbingan";
+          rekapSiswaData[sIdx].predikat = quizScore >= 85 ? "Sangat Baik (Bintang)" : (quizScore >= 75 ? "Baik (Duta)" : "Cukup (Bimbingan)");
           renderRekapSiswaTable();
         }
       }
@@ -2589,39 +2614,138 @@
 
     // --- 9. GENERATE KARTU CAPAIAN BELAJAR / RAPOR RESMI ---
     function generateRapor() {
-      if (!activeStudent) return;
-
-      document.getElementById("rapor-nama").textContent = activeStudent.nama;
-      document.getElementById("rapor-absen").textContent = activeStudent.no;
-      document.getElementById("rapor-nis").textContent = activeStudent.nis;
-      document.getElementById("rapor-nisn").textContent = activeStudent.nisn;
-      document.getElementById("rapor-skor-angka").textContent = quizScore;
-
+      const namaEl = document.getElementById("rapor-nama");
+      const absenEl = document.getElementById("rapor-absen");
+      const nisEl = document.getElementById("rapor-nis");
+      const nisnEl = document.getElementById("rapor-nisn");
+      const skorAngkaEl = document.getElementById("rapor-skor-angka");
       const predikatBadge = document.getElementById("rapor-predikat-badge");
       const seal = document.getElementById("rapor-seal-skor");
       const catatanGuru = document.getElementById("rapor-catatan-guru");
+      const statusM1 = document.getElementById("rapor-status-materi-1");
+      const statusM2 = document.getElementById("rapor-status-materi-2");
+      const statusM3 = document.getElementById("rapor-status-materi-3");
+      const statusM4 = document.getElementById("rapor-status-materi-4");
 
-      if (quizScore >= 85) {
-        predikatBadge.textContent = "Predikat: Sangat Baik (Bintang Kebhinekaan)";
-        predikatBadge.className = "fw-bold small text-success";
-        seal.style.background = "radial-gradient(circle, #fef08a 0%, #ca8a04 100%)";
-        catatanGuru.innerHTML = `
-          <strong>Apresiasi Istimewa:</strong> Selamat kepada Ananda <strong>${activeStudent.nama}</strong>! Ananda telah memahami dengan sangat mendalam nilai-nilai luhur kearifan lokal Melayu (sopan santun & musyawarah), Karo (Rakut Sitelu & gotong royong Aron), serta Simalungun (Habonaron Do Bona). Teruslah menjadi teladan kebhinekaan di Kelas VI-a!
-        `;
-      } else if (quizScore >= 70) {
-        predikatBadge.textContent = "Predikat: Baik (Duta Kearifan Lokal)";
-        predikatBadge.className = "fw-bold small text-primary";
-        seal.style.background = "radial-gradient(circle, #bae6fd 0%, #0284c7 100%)";
-        catatanGuru.innerHTML = `
-          <strong>Capaian Baik:</strong> Ananda <strong>${activeStudent.nama}</strong> telah menguasai sebagian besar materi kearifan lokal Sumatera Utara dengan baik. Pertahankan kejujuran dan budi pekerti santun dalam kehidupan bermasyarakat sehari-hari.
-        `;
+      // Kondisi jika belum ada siswa yang dipilih/aktif
+      if (!activeStudent) {
+        if (namaEl) namaEl.textContent = "-";
+        if (absenEl) absenEl.textContent = "-";
+        if (nisEl) nisEl.textContent = "-";
+        if (nisnEl) nisnEl.textContent = "-";
+        if (skorAngkaEl) skorAngkaEl.textContent = "-";
+        if (predikatBadge) {
+          predikatBadge.textContent = "-";
+          predikatBadge.className = "small text-muted";
+        }
+        if (seal) {
+          seal.style.background = "#f1f5f9";
+          seal.style.color = "#94a3b8";
+          seal.style.border = "3px dashed #cbd5e1";
+        }
+        if (catatanGuru) {
+          catatanGuru.innerHTML = '<div class="alert alert-light border small text-muted mb-0 py-2"><i class="bi bi-info-circle-fill text-primary me-2"></i>Belum ada data nilai. Silakan kerjakan Kuis Asesmen terlebih dahulu.</div>';
+        }
+        const dashHtml = `<span class="text-muted">-</span>`;
+        if (statusM1) statusM1.innerHTML = dashHtml;
+        if (statusM2) statusM2.innerHTML = dashHtml;
+        if (statusM3) statusM3.innerHTML = dashHtml;
+        if (statusM4) statusM4.innerHTML = dashHtml;
+        updateTanggalCetak();
+        return;
+      }
+
+      // Tampilkan identitas siswa
+      if (namaEl) namaEl.textContent = activeStudent.nama;
+      if (absenEl) absenEl.textContent = activeStudent.no;
+      if (nisEl) nisEl.textContent = activeStudent.nis;
+      if (nisnEl) nisnEl.textContent = activeStudent.nisn;
+
+      // Cek apakah siswa ini sudah menyelesaikan kuis asesmen di data rekap
+      const studentRekap = rekapSiswaData.find(s => s.no === activeStudent.no);
+      const hasCompletedQuiz = studentRekap && studentRekap.skor !== null;
+
+      // KONDISI 1: Belum mengerjakan kuis (skor null atau belum ada data)
+      if (!hasCompletedQuiz) {
+        if (skorAngkaEl) skorAngkaEl.textContent = "-";
+        if (predikatBadge) {
+          predikatBadge.textContent = "-";
+          predikatBadge.className = "small text-muted";
+        }
+        if (seal) {
+          seal.style.background = "#f1f5f9";
+          seal.style.color = "#94a3b8";
+          seal.style.border = "3px dashed #cbd5e1";
+        }
+        if (catatanGuru) {
+          catatanGuru.innerHTML = '<div class="alert alert-light border small text-muted mb-0 py-2"><i class="bi bi-info-circle-fill text-warning me-2"></i>Belum ada data nilai. Silakan kerjakan Kuis Asesmen terlebih dahulu.</div>';
+        }
+        const dashHtml = `<span class="text-muted">-</span>`;
+        if (statusM1) statusM1.innerHTML = dashHtml;
+        if (statusM2) statusM2.innerHTML = dashHtml;
+        if (statusM3) statusM3.innerHTML = dashHtml;
+        if (statusM4) statusM4.innerHTML = dashHtml;
+        updateTanggalCetak();
+        return;
+      }
+
+      // KONDISI 2 & 3: Siswa SUDAH menyelesaikan kuis
+      const currentScore = studentRekap.skor;
+      if (skorAngkaEl) skorAngkaEl.textContent = currentScore;
+      if (seal) seal.style.border = "none";
+
+      if (currentScore >= 75) {
+        // KONDISI 3: Skor ≥ 75 -> Status per materi Tuntas (warna hijau)
+        const tuntasBadgeHtml = `<span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1"><i class="bi bi-check-circle-fill me-1"></i> Tuntas</span>`;
+        if (statusM1) statusM1.innerHTML = tuntasBadgeHtml;
+        if (statusM2) statusM2.innerHTML = tuntasBadgeHtml;
+        if (statusM3) statusM3.innerHTML = tuntasBadgeHtml;
+        if (statusM4) statusM4.innerHTML = tuntasBadgeHtml;
+
+        if (currentScore >= 85) {
+          if (predikatBadge) {
+            predikatBadge.textContent = "Predikat: Sangat Baik (Bintang Kebhinekaan)";
+            predikatBadge.className = "fw-bold small text-success";
+          }
+          if (seal) {
+            seal.style.background = "radial-gradient(circle, #fef08a 0%, #ca8a04 100%)";
+            seal.style.color = "#422006";
+          }
+          if (catatanGuru) {
+            catatanGuru.innerHTML = `<strong>Apresiasi Istimewa:</strong> Selamat kepada Ananda <strong>${activeStudent.nama}</strong>! Ananda telah memahami dengan sangat mendalam nilai-nilai luhur kearifan lokal Melayu (sopan santun & musyawarah), Karo (Rakut Sitelu & gotong royong Aron), serta Simalungun (Habonaron Do Bona). Teruslah menjadi teladan kebhinekaan di Kelas VI-a!`;
+          }
+        } else {
+          if (predikatBadge) {
+            predikatBadge.textContent = "Predikat: Baik (Duta Kearifan Lokal)";
+            predikatBadge.className = "fw-bold small text-primary";
+          }
+          if (seal) {
+            seal.style.background = "radial-gradient(circle, #bae6fd 0%, #0284c7 100%)";
+            seal.style.color = "#082f49";
+          }
+          if (catatanGuru) {
+            catatanGuru.innerHTML = `<strong>Capaian Baik:</strong> Ananda <strong>${activeStudent.nama}</strong> telah menguasai seluruh materi kearifan lokal Sumatera Utara dengan tuntas di atas KKM (≥75). Pertahankan kejujuran dan budi pekerti santun dalam kehidupan bermasyarakat sehari-hari.`;
+          }
+        }
       } else {
-        predikatBadge.textContent = "Predikat: Cukup (Perlu Pemantapan)";
-        predikatBadge.className = "fw-bold small text-warning";
-        seal.style.background = "radial-gradient(circle, #fed7aa 0%, #ea580c 100%)";
-        catatanGuru.innerHTML = `
-          <strong>Motivasi Belajar:</strong> Ananda <strong>${activeStudent.nama}</strong> telah berusaha menyelesaikan pembelajaran. Disarankan untuk membaca kembali materi Modul 2 tentang tradisi Melayu, Karo, dan Simalungun agar semakin mantap dalam mempraktikkan kebaikan budaya.
-        `;
+        // KONDISI 2: Skor < 75 -> Status per materi Perlu Bimbingan (warna kuning/oranye)
+        const bimbinganBadgeHtml = `<span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle px-2 py-1"><i class="bi bi-exclamation-triangle-fill me-1"></i> Perlu Bimbingan</span>`;
+        if (statusM1) statusM1.innerHTML = bimbinganBadgeHtml;
+        if (statusM2) statusM2.innerHTML = bimbinganBadgeHtml;
+        if (statusM3) statusM3.innerHTML = bimbinganBadgeHtml;
+        if (statusM4) statusM4.innerHTML = bimbinganBadgeHtml;
+
+        if (predikatBadge) {
+          predikatBadge.textContent = "Predikat: Cukup (Perlu Bimbingan)";
+          predikatBadge.className = "fw-bold small text-warning-emphasis";
+        }
+        if (seal) {
+          seal.style.background = "radial-gradient(circle, #fed7aa 0%, #ea580c 100%)";
+          seal.style.color = "#431407";
+        }
+        if (catatanGuru) {
+          catatanGuru.innerHTML = `<strong>Motivasi Belajar:</strong> Ananda <strong>${activeStudent.nama}</strong> memperoleh nilai asesmen ${currentScore} (di bawah KKM 75). Disarankan membaca kembali rangkuman Modul 1, 2, dan 3 tentang tradisi Melayu, Karo, dan Simalungun serta mencoba kembali asesmen kuis agar mencapai ketuntasan kompetensi.`;
+        }
       }
 
       updateTanggalCetak();
