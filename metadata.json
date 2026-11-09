@@ -1,0 +1,6 @@
+{
+  "name": "Media Pembelajaran Kearifan Lokal & Kebhinekaan",
+  "description": "Media pembelajaran interaktif mandiri kearifan lokal Melayu, Karo, dan Simalungun (Sumatera Utara) untuk siswa Kelas VI SD Inpres 105285 Tandam Hilir I oleh Asriza Rinandar, S.Pd.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

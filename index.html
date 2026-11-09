@@ -1,0 +1,2610 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Media Pembelajaran Interaktif: Kearifan Lokal & Kebhinekaan</title>
+  <meta name="description" content="Media Pembelajaran Interaktif Mandiri berbasis Kearifan Lokal Melayu, Karo, dan Simalungun - SD Inpres 105285 Tandam Hilir I oleh Asriza Rinandar, S.Pd." />
+  <meta property="og:title" content="Media Pembelajaran Kearifan Lokal & Kebhinekaan" />
+  <meta property="og:description" content="Pembelajaran interaktif berbasis kearifan lokal Melayu, Karo, dan Simalungun (Sumatera Utara) untuk Kelas VI." />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap 5 CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+  <style>
+    :root {
+      --primary-melayu: #15803d; /* Zamrud Melayu */
+      --accent-melayu: #eab308;  /* Kuning Emas Diraja */
+      --primary-karo: #b91c1c;   /* Merah Bekabuluh Karo */
+      --accent-karo: #1e293b;    /* Hitam Tenun */
+      --primary-sima: #0284c7;   /* Biru Tenun Simalungun */
+      --accent-sima: #ea580c;    /* Terracotta Pinar */
+      --neutral-bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border-subtle: #e2e8f0;
+      --font-display: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: 
+        linear-gradient(135deg, rgba(248, 250, 252, 0.88) 0%, rgba(241, 245, 249, 0.92) 100%),
+        url('/assets/aistudio/kearifan_lokal_Indonesia_821b33b2.jpg') center center / cover no-repeat fixed;
+      color: var(--text-main);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6, .brand-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* Top Navbar */
+    .top-nav {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+      position: sticky;
+      top: 0;
+      z-index: 1020;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+
+    .nav-brand-text {
+      font-weight: 800;
+      font-size: 1.125rem;
+      color: #0f172a;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-btn {
+      color: #475569;
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      transition: all 0.15s ease-in-out;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      white-space: nowrap;
+    }
+
+    .nav-btn:hover {
+      color: #0f172a;
+      background: rgba(241, 245, 249, 0.85);
+    }
+
+    .nav-btn.active {
+      color: #0284c7;
+      background: #e0f2fe;
+      border-color: #bae6fd;
+    }
+
+    /* Welcome Hero Card */
+    .hero-banner {
+      background: 
+        linear-gradient(135deg, rgba(6, 78, 59, 0.88) 0%, rgba(4, 120, 87, 0.84) 100%),
+        url('/assets/aistudio/kearifan_lokal_Indonesia_821b33b2.jpg') center top / cover no-repeat;
+      color: #ffffff;
+      border-radius: 1.25rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 25px -5px rgba(6, 78, 59, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.08;
+      background-image: radial-gradient(#ffffff 1.5px, transparent 1.5px);
+      background-size: 16px 16px;
+      pointer-events: none;
+    }
+
+    .dev-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 0.5rem;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8125rem;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    /* Cards & Containers with Elegant Frosted Glass Effect */
+    .content-card {
+      background: rgba(255, 255, 255, 0.93);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .content-card-hover:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px -5px rgba(0,0,0,0.08);
+      border-color: #cbd5e1;
+    }
+
+    .culture-accent-melayu {
+      border-top: 4px solid var(--accent-melayu);
+    }
+
+    .culture-accent-karo {
+      border-top: 4px solid var(--primary-karo);
+    }
+
+    .culture-accent-simalungun {
+      border-top: 4px solid var(--primary-sima);
+    }
+
+    /* Tab navigation */
+    .custom-tabs .nav-link {
+      font-weight: 600;
+      color: #64748b;
+      border: 1px solid transparent;
+      border-radius: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      margin-right: 0.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .custom-tabs .nav-link:hover {
+      color: #0f172a;
+      background-color: #f1f5f9;
+    }
+
+    .custom-tabs .nav-link.active {
+      color: #0f172a;
+      background-color: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    /* Interactive Simulation Decision Cards */
+    .scenario-option-btn {
+      width: 100%;
+      text-align: left;
+      padding: 1rem 1.25rem;
+      border-radius: 0.75rem;
+      border: 1.5px solid #e2e8f0;
+      background: #ffffff;
+      color: #1e293b;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .scenario-option-btn:hover {
+      background: #f8fafc;
+      border-color: #38bdf8;
+      transform: translateX(3px);
+    }
+
+    .scenario-option-btn.selected-correct {
+      background: #f0fdf4;
+      border-color: #22c55e;
+      color: #14532d;
+    }
+
+    .scenario-option-btn.selected-wrong {
+      background: #fef2f2;
+      border-color: #ef4444;
+      color: #7f1d1d;
+    }
+
+    /* Quiz Option Labels */
+    .quiz-option {
+      border: 1.5px solid #e2e8f0;
+      border-radius: 0.75rem;
+      padding: 0.85rem 1.15rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    .quiz-option:hover {
+      border-color: #94a3b8;
+      background: #f8fafc;
+    }
+
+    .quiz-option.active {
+      border-color: #0284c7;
+      background: #f0f9ff;
+      color: #0369a1;
+      font-weight: 600;
+    }
+
+    /* Certificate / Report Card Print Styling */
+    .certificate-card {
+      background: #ffffff;
+      border: 2px solid #0f172a;
+      border-radius: 1rem;
+      position: relative;
+      padding: 2.5rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    }
+
+    .cert-border-inner {
+      border: 1px dashed #94a3b8;
+      border-radius: 0.75rem;
+      padding: 2rem;
+    }
+
+    .cert-seal {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fef08a 0%, #ca8a04 100%);
+      color: #713f12;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.5rem;
+      border: 3px solid #854d0e;
+      box-shadow: 0 4px 10px rgba(161, 98, 7, 0.25);
+    }
+
+    /* Section Visibility Controller */
+    .app-view {
+      display: none;
+    }
+
+    .app-view.active-view {
+      display: block;
+      animation: fadeIn 0.25s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* App Footer Translucent Glass */
+    .app-footer {
+      background: rgba(255, 255, 255, 0.90);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    /* Clean Print CSS - Supports printing Rapor Siswa & Rekap Guru */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 1cm;
+      }
+
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 11pt;
+      }
+
+      .no-print,
+      .top-nav,
+      .app-footer,
+      #view-welcome,
+      #view-home,
+      #view-modul-1,
+      #view-modul-2,
+      #view-modul-3,
+      #view-simulasi,
+      #view-kuis,
+      .modal,
+      .btn-print-hide {
+        display: none !important;
+      }
+
+      #view-rapor {
+        display: none !important;
+      }
+
+      #view-rapor.active-view {
+        display: block !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      #view-guru {
+        display: none !important;
+      }
+
+      #view-guru.active-view {
+        display: block !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .certificate-card {
+        border: 2px solid #1e293b !important;
+        box-shadow: none !important;
+        padding: 1.5rem !important;
+        page-break-inside: avoid !important;
+      }
+
+      .cert-border-inner {
+        padding: 1.25rem !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================== -->
+  <!-- 1. TOP NAVIGATION BAR (GLOBAL NAVBAR)       -->
+  <!-- ========================================== -->
+  <header class="top-nav no-print">
+    <div class="container-xl d-flex align-items-center justify-content-between py-2 px-3">
+      <!-- Zone 1: Brand Wordmark -->
+      <a href="javascript:void(0)" onclick="navTo('home')" class="nav-brand-text">
+        <i class="bi bi-compass text-success fs-4"></i>
+        <span>Kearifan Lokal & Kebhinekaan</span>
+      </a>
+
+      <!-- Zone 2: Navigation Links (Hidden when not logged in) -->
+      <nav id="nav-links-zone" class="d-none d-lg-flex align-items-center gap-1">
+        <a href="javascript:void(0)" onclick="navTo('home')" id="nav-home" class="nav-btn active">
+          <i class="bi bi-house-door"></i> Beranda
+        </a>
+        <div class="dropdown">
+          <button class="nav-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-book"></i> Modul Materi
+          </button>
+          <ul class="dropdown-menu shadow-sm border-0 mt-1">
+            <li><a class="dropdown-item py-2" href="javascript:void(0)" onclick="navTo('modul-1')"><i class="bi bi-1-circle me-2 text-primary"></i>Konsep Dasar & Kebhinekaan</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item py-2" href="javascript:void(0)" onclick="navTo('modul-2', 'melayu')"><i class="bi bi-flower1 me-2 text-warning"></i>Kearifan Budaya Melayu</a></li>
+            <li><a class="dropdown-item py-2" href="javascript:void(0)" onclick="navTo('modul-2', 'karo')"><i class="bi bi-shield-check me-2 text-danger"></i>Kearifan Budaya Karo</a></li>
+            <li><a class="dropdown-item py-2" href="javascript:void(0)" onclick="navTo('modul-2', 'simalungun')"><i class="bi bi-gem me-2 text-info"></i>Kearifan Budaya Simalungun</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item py-2" href="javascript:void(0)" onclick="navTo('modul-3')"><i class="bi bi-people me-2 text-success"></i>Penerapan dalam Keseharian</a></li>
+          </ul>
+        </div>
+        <a href="javascript:void(0)" onclick="navTo('simulasi')" id="nav-simulasi" class="nav-btn">
+          <i class="bi bi-controller"></i> Simulasi Interaktif
+        </a>
+        <a href="javascript:void(0)" onclick="navTo('kuis')" id="nav-kuis" class="nav-btn">
+          <i class="bi bi-pencil-square"></i> Kuis Asesmen
+        </a>
+        <a href="javascript:void(0)" onclick="navTo('rapor')" id="nav-rapor" class="nav-btn">
+          <i class="bi bi-award"></i> Rapor Capaian
+        </a>
+        <a href="javascript:void(0)" onclick="navTo('guru')" id="nav-guru" class="nav-btn d-none">
+          <i class="bi bi-mortarboard-fill text-warning"></i> Ruang Guru
+        </a>
+      </nav>
+
+      <!-- Zone 3: User Status & Actions -->
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modalBantuan">
+          <i class="bi bi-question-circle"></i>
+          <span class="d-none d-sm-inline">Bantuan</span>
+        </button>
+
+        <div id="nav-user-session" class="d-none align-items-center gap-2">
+          <span id="top-user-role-badge" class="badge bg-primary-subtle text-primary border border-primary-subtle d-none d-md-inline">Siswa</span>
+          <span class="d-none d-md-inline text-muted small">
+            <strong id="top-user-name" class="text-dark">Siswa</strong>
+          </span>
+          <button class="btn btn-sm btn-outline-danger d-inline-flex align-items-center gap-1" onclick="konfirmasiLogout()" title="Ganti Pengguna / Reset Sesi">
+            <i class="bi bi-box-arrow-right"></i>
+            <span class="d-none d-sm-inline">Keluar</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- MAIN CONTENT CONTAINER                    -->
+  <!-- ========================================== -->
+  <main class="flex-grow-1 py-4">
+    <div class="container-xl">
+
+      <!-- ========================================== -->
+      <!-- VIEW 1: WELCOME & STUDENT IDENTIFICATION  -->
+      <!-- ========================================== -->
+      <section id="view-welcome" class="app-view active-view">
+        <div class="row g-4 align-items-stretch">
+          
+          <!-- Kolom Kiri: Banner Pengantar & Ilustrasi -->
+          <div class="col-lg-7">
+            <div class="hero-banner p-4 p-md-5 h-100 d-flex flex-column justify-content-between position-relative">
+              <div class="hero-pattern"></div>
+              
+              <div>
+                <div class="dev-badge mb-3">
+                  <i class="bi bi-mortarboard-fill text-warning"></i>
+                  <span>Media Pembelajaran Kurikulum Merdeka</span>
+                </div>
+                <h1 class="display-6 fw-bold mb-3 text-white">
+                  MEDIA PEMBELAJARAN INTERAKTIF: <br>
+                  <span class="text-warning">KEARIFAN LOKAL & KEBHINEKAAN</span>
+                </h1>
+                <p class="lead text-white-50 mb-4" style="max-width: 580px; font-size: 1rem; line-height: 1.6;">
+                  Menumbuhkan karakter kebhinekaan global melalui nilai luhur falsafah tradisi Melayu, Karo, dan Simalungun di Sumatera Utara.
+                </p>
+
+                <!-- Identitas Pengembang Resmi Sesuai Permintaan -->
+                <div class="bg-white text-dark p-3 rounded-3 shadow-sm mb-4" style="max-width: 520px; border-left: 4px solid #eab308;">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; min-width: 48px;">
+                      <i class="bi bi-person-badge fs-4"></i>
+                    </div>
+                    <div>
+                      <div class="text-uppercase text-muted fw-bold" style="font-size: 0.72rem; letter-spacing: 0.05em;">Pengembang Media Pembelajaran:</div>
+                      <div class="fw-bold fs-6 text-dark">Asriza Rinandar, S.Pd</div>
+                      <div class="text-secondary small">Guru Kelas VI-a &middot; UPT SPF SD Inpres 105285 Tandam Hilir I</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Potret Busana Adat Tradisional Sumatera Utara Pengembang -->
+              <div class="mt-2 text-center">
+                <div class="rounded-3 overflow-hidden shadow-sm d-inline-block bg-white p-2" style="max-width: 100%;">
+                  <img src="/assets/aistudio/Potret_Pria_Tradisional__a0bc851f.png" 
+                       alt="Potret Busana Adat Tradisional Sumatera Utara" 
+                       class="img-fluid rounded shadow-sm" 
+                       style="max-height: 280px; width: auto; object-fit: cover; object-position: top;"
+                       onerror="this.style.display='none'" />
+                </div>
+                <div class="small text-white-50 mt-1">Busana Tradisional Warisan Budaya Sumatera Utara</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kolom Kanan: Panel Masuk Identitas (Siswa / Guru) -->
+          <div class="col-lg-5">
+            <div class="content-card p-4 p-md-5 h-100 d-flex flex-column justify-content-between">
+              <div>
+                <!-- Segmented Role Selector -->
+                <div class="d-flex p-1 bg-light rounded-3 border mb-3">
+                  <button type="button" class="btn btn-sm flex-fill fw-bold rounded-2 btn-success shadow-xs" id="btn-tab-role-siswa" onclick="switchLoginRole('siswa')">
+                    <i class="bi bi-person-badge me-1"></i> Presensi Siswa
+                  </button>
+                  <button type="button" class="btn btn-sm flex-fill fw-bold rounded-2 text-secondary" id="btn-tab-role-guru" onclick="switchLoginRole('guru')">
+                    <i class="bi bi-mortarboard-fill me-1"></i> Presensi Guru
+                  </button>
+                </div>
+
+                <!-- SUB-PANEL 1: PRESENSI SISWA -->
+                <div id="panel-login-siswa">
+                  <div class="d-flex align-items-center justify-content-between mb-2">
+                    <h3 class="h5 mb-0 fw-bold">Presensi & Masuk Siswa</h3>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Kelas VI-a</span>
+                  </div>
+                  <p class="text-muted small mb-3">
+                    Silakan pilih nama kamu dari daftar 23 siswa kelas untuk memulai penjelajahan materi pembelajaran dan asesmen mandiri.
+                  </p>
+
+                  <!-- Form Pilihan Siswa -->
+                  <div class="mb-3">
+                    <label for="select-siswa" class="form-label fw-bold small text-secondary">
+                      <i class="bi bi-person-check me-1 text-primary"></i> Pilih Nama Siswa Terdaftar:
+                    </label>
+                    <select id="select-siswa" class="form-select form-select-lg" onchange="pilihSiswaHandler()">
+                      <option value="" selected disabled>-- Pilih Nama Kamu Disini --</option>
+                    </select>
+                  </div>
+
+                  <!-- Kartu Identitas Siswa Otomatis Terisi -->
+                  <div id="card-identitas-terpilih" class="p-3 rounded-3 bg-light border d-none mb-3">
+                    <div class="d-flex align-items-center gap-2 mb-2 pb-2 border-bottom">
+                      <i class="bi bi-patch-check-fill text-success fs-5"></i>
+                      <strong class="text-dark" id="display-nama-siswa">-</strong>
+                    </div>
+                    <div class="row g-2 small text-secondary">
+                      <div class="col-4">
+                        <span class="d-block text-muted" style="font-size: 0.75rem;">No. Absen</span>
+                        <strong class="text-dark" id="display-no-absen">-</strong>
+                      </div>
+                      <div class="col-4">
+                        <span class="d-block text-muted" style="font-size: 0.75rem;">NIS</span>
+                        <strong class="text-dark" id="display-nis">-</strong>
+                      </div>
+                      <div class="col-4">
+                        <span class="d-block text-muted" style="font-size: 0.75rem;">NISN</span>
+                        <strong class="text-dark" id="display-nisn">-</strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Informasi Petunjuk Belajar Singkat -->
+                  <div class="alert alert-light border small text-muted mb-0">
+                    <i class="bi bi-info-circle-fill text-primary me-1"></i>
+                    Selesaikan 3 modul materi, ikuti simulasi pemecahan masalah, lalu kerjakan kuis 8 soal untuk memperoleh Kartu Capaian Belajar resmi.
+                  </div>
+                </div>
+
+                <!-- SUB-PANEL 2: PRESENSI GURU (ASRIZA RINANDAR, S.Pd) -->
+                <div id="panel-login-guru" class="d-none">
+                  <div class="d-flex align-items-center justify-content-between mb-2">
+                    <h3 class="h5 mb-0 fw-bold text-dark">Presensi Masuk Guru</h3>
+                    <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle">Pengampu</span>
+                  </div>
+                  <p class="text-muted small mb-3">
+                    Presensi resmi guru pengampu & pengembang media untuk mengelola pembelajaran, melihat rekap nilai 23 siswa, dan rubrik asesmen.
+                  </p>
+
+                  <!-- Kartu Profil Guru Pengembang -->
+                  <div class="p-3 rounded-3 bg-light border mb-3 border-start border-warning border-3">
+                    <div class="d-flex align-items-center gap-3 mb-2 pb-2 border-bottom">
+                      <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; min-width: 44px;">
+                        <i class="bi bi-person-check-fill fs-5"></i>
+                      </div>
+                      <div>
+                        <div class="text-uppercase text-muted fw-bold" style="font-size: 0.7rem;">Guru Kelas VI-a (Pengembang)</div>
+                        <div class="fw-bold text-dark fs-6">Asriza Rinandar, S.Pd</div>
+                      </div>
+                    </div>
+                    <div class="small text-secondary mb-1">
+                      <i class="bi bi-building me-1 text-primary"></i> <strong>UPT SPF SD Inpres 105285 Tandam Hilir I</strong>
+                    </div>
+                    <div class="small text-secondary mb-2">
+                      <i class="bi bi-journal-bookmark me-1 text-success"></i> Muatan Kearifan Lokal & Kebhinekaan (Pancasila)
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="badge bg-success-subtle text-success border border-success-subtle">
+                        <i class="bi bi-check-circle-fill me-1"></i> Status: Hadir Mengajar
+                      </span>
+                      <span class="badge bg-primary-subtle text-primary border border-primary-subtle">
+                        23 Siswa Terdaftar
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Catatan Akses Guru -->
+                  <div class="alert alert-warning-subtle border border-warning small text-dark mb-0">
+                    <i class="bi bi-shield-lock-fill text-warning me-1"></i>
+                    Akses Guru mencakup seluruh materi modul, simulasi, kunci jawaban kuis, rubrik penilaian, serta tabel rekap nilai lengkap dan cetak rapor perorangan.
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Tombol Aksi Bawah -->
+              <div class="mt-4 pt-3 border-top">
+                <!-- Tombol Siswa -->
+                <div id="btn-action-siswa-wrap">
+                  <button id="btn-mulai-belajar" class="btn btn-success btn-lg w-100 py-3 fw-bold shadow-sm d-flex align-items-center justify-content-center gap-2" onclick="mulaiPembelajaran()" disabled>
+                    <span>Mulai Pembelajaran</span>
+                    <i class="bi bi-arrow-right-circle-fill fs-5"></i>
+                  </button>
+                </div>
+
+                <!-- Tombol Guru -->
+                <div id="btn-action-guru-wrap" class="d-none">
+                  <button id="btn-masuk-guru" class="btn btn-primary btn-lg w-100 py-3 fw-bold shadow-sm d-flex align-items-center justify-content-center gap-2" onclick="masukSebagaiGuru()">
+                    <i class="bi bi-box-arrow-in-right fs-5"></i>
+                    <span>Masuk sebagai Guru</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 2: BERANDA / HOME DASHBOARD           -->
+      <!-- ========================================== -->
+      <section id="view-home" class="app-view">
+        <!-- Banner Selamat Datang Siswa -->
+        <div class="content-card p-4 mb-3 bg-white">
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <div>
+              <div class="text-uppercase text-muted fw-bold small" id="home-greeting-label">Selamat Datang di Ruang Belajar Mandiri:</div>
+              <h2 class="h3 fw-bold text-dark mb-1">
+                Halo, <span id="home-greeting-name" class="text-success">Siswa</span>! 👋
+              </h2>
+              <div class="text-secondary small" id="home-greeting-details">
+                No. Absen: <strong id="home-greeting-no">-</strong> &middot; 
+                NIS: <strong id="home-greeting-nis">-</strong> &middot; 
+                NISN: <strong id="home-greeting-nisn">-</strong> &middot; 
+                Kelas VI-a SD Inpres 105285 Tandam Hilir I
+              </div>
+            </div>
+            <div class="d-flex gap-2">
+              <button id="btn-home-guru-rekap" class="btn btn-warning text-dark btn-sm d-none align-items-center gap-1 fw-bold shadow-xs" onclick="navTo('guru')">
+                <i class="bi bi-mortarboard-fill"></i> Ruang Guru & Rekap Nilai
+              </button>
+              <button class="btn btn-outline-primary btn-sm d-flex align-items-center gap-1" onclick="navTo('simulasi')">
+                <i class="bi bi-controller"></i> Simulasi Kasus
+              </button>
+              <button class="btn btn-success btn-sm d-flex align-items-center gap-1" onclick="navTo('kuis')">
+                <i class="bi bi-pencil-square"></i> Mulai Kuis
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banner Khusus Mode Guru Pengampu -->
+        <div id="home-guru-banner" class="alert alert-warning-subtle border border-warning d-none mb-4 p-3 rounded-3 shadow-xs">
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <div class="d-flex align-items-center gap-3">
+              <div class="bg-warning text-dark p-2 rounded-circle fs-4 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
+                <i class="bi bi-person-workspace"></i>
+              </div>
+              <div>
+                <div class="fw-bold text-dark">Mode Pengampu Aktif: Asriza Rinandar, S.Pd (Guru Kelas VI-a)</div>
+                <div class="text-secondary small">Bapak Guru dapat melihat rekapitulasi nilai 23 siswa, mengunduh/cetak rapor individu, dan mengakses kunci jawaban kuis.</div>
+              </div>
+            </div>
+            <button class="btn btn-warning text-dark btn-sm fw-bold shadow-xs" onclick="navTo('guru')">
+              Buka Ruang Rekap Kelas <i class="bi bi-arrow-right ms-1"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Menu Pilihan Modul & Aktivitas (Bento Grid) -->
+        <div class="row g-3 mb-4">
+          
+          <!-- Modul 1 -->
+          <div class="col-md-6 col-lg-4">
+            <div class="content-card content-card-hover p-4 h-100 d-flex flex-column justify-content-between">
+              <div>
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <span class="badge bg-primary-subtle text-primary fw-bold">Modul 1</span>
+                  <i class="bi bi-compass text-primary fs-4"></i>
+                </div>
+                <h4 class="h5 fw-bold text-dark mb-2">Konsep Dasar & Kebhinekaan</h4>
+                <p class="text-muted small">
+                  Memahami hakikat kearifan lokal, keanekaragaman suku bangsa Indonesia, dan persatuan dalam keberagaman di Sumatera Utara.
+                </p>
+              </div>
+              <div class="mt-3 pt-3 border-top">
+                <button class="btn btn-outline-primary w-100 btn-sm fw-semibold" onclick="navTo('modul-1')">
+                  Buka Modul 1 <i class="bi bi-arrow-right ms-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modul 2: Eksplorasi 3 Budaya -->
+          <div class="col-md-6 col-lg-4">
+            <div class="content-card content-card-hover p-4 h-100 d-flex flex-column justify-content-between border-top border-warning border-3">
+              <div>
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <span class="badge bg-warning-subtle text-warning-emphasis fw-bold">Modul 2</span>
+                  <i class="bi bi-feather text-warning fs-4"></i>
+                </div>
+                <h4 class="h5 fw-bold text-dark mb-2">Eksplorasi Tiga Budaya Sumut</h4>
+                <p class="text-muted small">
+                  Menelusuri mutiara kearifan tradisi Melayu (Tepung Tawar & Pantun), Karo (Rakut Sitelu & Aron), serta Simalungun (Habonaron Do Bona).
+                </p>
+              </div>
+              <div class="mt-3 pt-3 border-top">
+                <button class="btn btn-outline-warning text-dark w-100 btn-sm fw-semibold" onclick="navTo('modul-2')">
+                  Jelajahi 3 Budaya <i class="bi bi-arrow-right ms-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modul 3: Penerapan Keseharian -->
+          <div class="col-md-6 col-lg-4">
+            <div class="content-card content-card-hover p-4 h-100 d-flex flex-column justify-content-between border-top border-success border-3">
+              <div>
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <span class="badge bg-success-subtle text-success fw-bold">Modul 3</span>
+                  <i class="bi bi-people text-success fs-4"></i>
+                </div>
+                <h4 class="h5 fw-bold text-dark mb-2">Penerapan Nyata di Sekolah</h4>
+                <p class="text-muted small">
+                  Praktik nyata gotong royong, adab bertutur kata sopan, kejujuran saat ujian, dan persahabatan lintas suku di Kelas VI.
+                </p>
+              </div>
+              <div class="mt-3 pt-3 border-top">
+                <button class="btn btn-outline-success w-100 btn-sm fw-semibold" onclick="navTo('modul-3')">
+                  Buka Modul 3 <i class="bi bi-arrow-right ms-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modul Aktivitas: Simulasi Interaktif -->
+          <div class="col-md-6 col-lg-6">
+            <div class="content-card content-card-hover p-4 h-100 d-flex flex-column justify-content-between bg-light">
+              <div class="d-flex align-items-start gap-3">
+                <div class="bg-primary text-white p-3 rounded-3">
+                  <i class="bi bi-controller fs-3"></i>
+                </div>
+                <div>
+                  <h4 class="h5 fw-bold text-dark mb-1">Simulasi Dilema & Karakter Siswa</h4>
+                  <p class="text-muted small mb-0">
+                    Uji keputusan moralmu melalui 3 skenario nyata di sekolah dengan bimbingan falsafah kearifan lokal Sumatera Utara.
+                  </p>
+                </div>
+              </div>
+              <div class="mt-3 pt-3 border-top">
+                <button class="btn btn-primary btn-sm fw-semibold" onclick="navTo('simulasi')">
+                  Mainkan Simulasi Sekarang <i class="bi bi-play-circle-fill ms-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modul Aktivitas: Asesmen Kuis -->
+          <div class="col-md-6 col-lg-6">
+            <div class="content-card content-card-hover p-4 h-100 d-flex flex-column justify-content-between bg-light">
+              <div class="d-flex align-items-start gap-3">
+                <div class="bg-success text-white p-3 rounded-3">
+                  <i class="bi bi-pencil-square fs-3"></i>
+                </div>
+                <div>
+                  <h4 class="h5 fw-bold text-dark mb-1">Kuis Asesmen & Kartu Capaian</h4>
+                  <p class="text-muted small mb-0">
+                    Selesaikan 8 soal pilihan ganda studi kasus untuk memperoleh skor dan mencetak Sertifikat Capaian Belajar mandiri.
+                  </p>
+                </div>
+              </div>
+              <div class="mt-3 pt-3 border-top">
+                <button class="btn btn-success btn-sm fw-semibold" onclick="navTo('kuis')">
+                  Mulai Kuis Asesmen <i class="bi bi-check2-circle ms-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Info Satuan Pendidikan & Pengembang -->
+        <div class="p-3 rounded-3 bg-white border text-center text-muted small">
+          <strong>UPT SPF SD Inpres 105285 Tandam Hilir I</strong> &middot; Kelas VI-a &middot; Guru Pengembang: <strong>Asriza Rinandar, S.Pd</strong>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 3: MODUL 1 - KONSEP DASAR             -->
+      <!-- ========================================== -->
+      <section id="view-modul-1" class="app-view">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+          <div>
+            <span class="text-uppercase text-primary fw-bold small">Modul Pembelajaran 1</span>
+            <h2 class="h3 fw-bold text-dark">Konsep Dasar Kearifan Lokal & Kebhinekaan</h2>
+          </div>
+          <button class="btn btn-sm btn-outline-secondary" onclick="navTo('home')">
+            <i class="bi bi-arrow-left me-1"></i> Beranda
+          </button>
+        </div>
+
+        <!-- Kartu Materi 1: Hakikat Kearifan Lokal -->
+        <div class="content-card p-4 mb-4">
+          <div class="row align-items-center g-4">
+            <div class="col-md-8">
+              <h3 class="h5 fw-bold text-primary mb-3">
+                <i class="bi bi-book-half me-2"></i>1. Apa Itu Kearifan Lokal?
+              </h3>
+              <p class="text-secondary leading-relaxed">
+                <strong>Kearifan lokal (Local Wisdom)</strong> adalah pandangan hidup, nilai-nilai kebaikan, adat istiadat, dan pengetahuan warisan para leluhur yang berlaku dalam suatu masyarakat untuk membimbing warganya hidup rukun, bijaksana, serta selaras dengan alam dan sesama manusia.
+              </p>
+              <div class="bg-light p-3 rounded-3 border-start border-primary border-3">
+                <div class="fw-semibold text-dark small mb-1">Ciri Pokok Kearifan Lokal:</div>
+                <ul class="mb-0 small text-secondary ps-3">
+                  <li>Mampu bertahan di tengah perubahan zaman dan arus modernisasi.</li>
+                  <li>Mengajarkan nilai budi pekerti luhur (sopan santun, gotong royong, kejujuran).</li>
+                  <li>Menjadi perekat persatuan masyarakat dalam menjaga perdamaian.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-4 text-center">
+              <div class="p-3 bg-primary-subtle rounded-3 text-primary">
+                <i class="bi bi-tree-fill display-4 d-block mb-2"></i>
+                <div class="fw-bold">Selaras Dengan Alam & Manusia</div>
+                <div class="small text-muted">Kearifan lokal menjaga keutuhan bumi dan persaudaraan.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kartu Materi 2: Kebhinekaan & Bhinneka Tunggal Ika -->
+        <div class="content-card p-4 mb-4">
+          <h3 class="h5 fw-bold text-success mb-3">
+            <i class="bi bi-globe-americas me-2"></i>2. Kebhinekaan Sebagai Kekuatan Bangsa
+          </h3>
+          <p class="text-secondary">
+            Indonesia dianugerahi lebih dari 1.300 suku bangsa dengan beragam adat, bahasa daerah, dan tradisi. Di Sumatera Utara sendiri, kita hidup berdampingan secara harmonis antara suku Melayu, Karo, Simalungun, Toba, Mandailing, Pakpak, Nias, Jawa, Tionghoa, Tamil, dan lainnya.
+          </p>
+          <div class="row g-3">
+            <div class="col-md-4">
+              <div class="p-3 rounded-3 bg-light h-100 border">
+                <div class="fw-bold text-dark mb-1"><i class="bi bi-heart-fill text-danger me-1"></i> Bukan Pemicu Pecah</div>
+                <div class="small text-muted">Perbedaan adat dan suku adalah kekayaan warna pelangi yang memperindah persatuan bangsa.</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="p-3 rounded-3 bg-light h-100 border">
+                <div class="fw-bold text-dark mb-1"><i class="bi bi-people-fill text-primary me-1"></i> Saling Menghargai</div>
+                <div class="small text-muted">Toleransi aktif dengan menghormati cara beribadah dan adat tradisi kawan sebangku.</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="p-3 rounded-3 bg-light h-100 border">
+                <div class="fw-bold text-dark mb-1"><i class="bi bi-shield-shaded text-success me-1"></i> Bhinneka Tunggal Ika</div>
+                <div class="small text-muted">Walau berbeda-beda adat dan bahasanya, kita tetap satu tumpah darah: Indonesia!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tombol Lanjut ke Modul Berikutnya -->
+        <div class="d-flex justify-content-between align-items-center mt-4">
+          <button class="btn btn-outline-secondary" onclick="navTo('home')">
+            <i class="bi bi-house"></i> Kembali ke Menu
+          </button>
+          <button class="btn btn-primary" onclick="navTo('modul-2')">
+            Lanjut ke Modul 2: Eksplorasi 3 Budaya <i class="bi bi-arrow-right ms-1"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 4: MODUL 2 - EKSPLORASI TIGA BUDAYA   -->
+      <!-- ========================================== -->
+      <section id="view-modul-2" class="app-view">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+          <div>
+            <span class="text-uppercase text-warning fw-bold small">Modul Pembelajaran 2</span>
+            <h2 class="h3 fw-bold text-dark">Eksplorasi Tiga Budaya: Melayu, Karo, & Simalungun</h2>
+          </div>
+          <button class="btn btn-sm btn-outline-secondary" onclick="navTo('home')">
+            <i class="bi bi-arrow-left me-1"></i> Beranda
+          </button>
+        </div>
+
+        <!-- Tab Pemilihan Budaya -->
+        <ul class="nav nav-pills custom-tabs mb-4 bg-light p-2 rounded-3 border" id="cultureTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="tab-melayu" data-bs-toggle="pill" data-bs-target="#content-melayu" type="button" role="tab">
+              <i class="bi bi-flower1 text-warning me-1"></i> 1. Kearifan Melayu
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="tab-karo" data-bs-toggle="pill" data-bs-target="#content-karo" type="button" role="tab">
+              <i class="bi bi-shield-check text-danger me-1"></i> 2. Kearifan Karo
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="tab-simalungun" data-bs-toggle="pill" data-bs-target="#content-simalungun" type="button" role="tab">
+              <i class="bi bi-gem text-info me-1"></i> 3. Kearifan Simalungun
+            </button>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="cultureTabsContent">
+          
+          <!-- TAB 1: KEARIFAN MELAYU -->
+          <div class="tab-pane fade show active" id="content-melayu" role="tabpanel">
+            <div class="content-card culture-accent-melayu p-4 mb-4">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="bg-warning-subtle text-warning-emphasis p-2 rounded-circle">
+                  <i class="bi bi-flower1 fs-3"></i>
+                </div>
+                <div>
+                  <h3 class="h4 fw-bold text-dark mb-0">Adab Sopan Santun & Tradisi Luhur Melayu</h3>
+                  <div class="text-muted small">Pesisir Timur Sumatera Utara (Langkat, Deli, Serdang, Asahan, Batubara)</div>
+                </div>
+              </div>
+
+              <div class="row g-4 mt-1">
+                <!-- Tradisi Tepung Tawar -->
+                <div class="col-md-6">
+                  <div class="p-3 rounded-3 bg-light h-100 border">
+                    <h4 class="h6 fw-bold text-success mb-2">
+                      <i class="bi bi-stars text-warning me-1"></i> Upacara Tradisi Tepung Tawar (Menawar)
+                    </h4>
+                    <p class="small text-secondary mb-2">
+                      Upacara adat penuh doa restu dan keselamatan saat memulai hal baru (khitanan, pernikahan, menempati rumah baru, atau meraih keberhasilan belajar).
+                    </p>
+                    <ul class="small text-secondary mb-0 ps-3">
+                      <li><strong>Beras Kuning:</strong> Lambang kemuliaan, rezeki berkah, dan hati yang bersih.</li>
+                      <li><strong>Bertih (Padi sangrai):</strong> Lambang kesuburan dan mekarnya kebaikan budi.</li>
+                      <li><strong>Air Mawar & Daun Dingin:</strong> Menyejukkan hati dan menjauhkan rasa permusuhan.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- Nilai Pantun & Musyawarah -->
+                <div class="col-md-6">
+                  <div class="p-3 rounded-3 bg-light h-100 border">
+                    <h4 class="h6 fw-bold text-success mb-2">
+                      <i class="bi bi-chat-heart text-primary me-1"></i> Pantun Adat & Prinsip Musyawarah
+                    </h4>
+                    <p class="small text-secondary mb-2">
+                      Orang Melayu menjunjung tinggi adab bertutur kata. Nasihat disampaikan secara halus melalui pantun agar tidak menyinggung perasaan lawan bicara.
+                    </p>
+                    <div class="p-2 bg-white rounded border small fst-italic text-muted mb-2">
+                      "Pucuk pauh delima batu,<br>
+                      Anak sembilang di tapak tangan.<br>
+                      Biar jauh di negeri satu,<br>
+                      Hilang di mata di hati jangan."
+                    </div>
+                    <div class="small text-secondary">
+                      <strong>Prinsip Musyawarah:</strong> <em>"Bulat air karena pembuluh, bulat kata karena mufakat."</em> Masalah diselesaikan bersama secara damai.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interaktif Mini-Pantun -->
+              <div class="mt-4 p-3 bg-warning-subtle rounded-3 border border-warning">
+                <div class="fw-bold text-dark small mb-1"><i class="bi bi-lightbulb-fill text-warning me-1"></i> Tahukah Kamu? (Adab Berbicara)</div>
+                <div class="small text-secondary">
+                  Dalam budaya Melayu, anak yang baik selalu mendengarkan orang tua tanpa memotong pembicaraan, menyapa guru dengan salam takzim, dan berbicara dengan intonasi yang lembut dan santun.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: KEARIFAN KARO -->
+          <div class="tab-pane fade" id="content-karo" role="tabpanel">
+            <div class="content-card culture-accent-karo p-4 mb-4">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="bg-danger-subtle text-danger p-2 rounded-circle">
+                  <i class="bi bi-shield-check fs-3"></i>
+                </div>
+                <div>
+                  <h3 class="h4 fw-bold text-dark mb-0">Falsafah Rakut Sitelu & Semangat Gotong Royong Karo</h3>
+                  <div class="text-muted small">Tanah Karo & Langkat (Dataran Tinggi & Lembah Sejuk)</div>
+                </div>
+              </div>
+
+              <div class="row g-4 mt-1">
+                <!-- Falsafah Rakut Sitelu -->
+                <div class="col-md-6">
+                  <div class="p-3 rounded-3 bg-light h-100 border">
+                    <h4 class="h6 fw-bold text-danger mb-2">
+                      <i class="bi bi-diagram-3-fill text-danger me-1"></i> Falsafah Luhur "Rakut Sitelu"
+                    </h4>
+                    <p class="small text-secondary mb-2">
+                      Tiga pilar kekerabatan yang mengatur hubungan persaudaraan dan tata krama dalam adat Karo:
+                    </p>
+                    <ul class="small text-secondary mb-0 ps-3">
+                      <li><strong>Kalimbubu:</strong> Pihak yang sangat dihormati dan dimuliakan (pemberi berkat dan petuah bijak).</li>
+                      <li><strong>Senina (Sukut):</strong> Saudara sekelompok yang saling mendampingi dan berbagi beban secara adil.</li>
+                      <li><strong>Anak Beru:</strong> Pihak pekerja keras yang melayani keperluan keluarga dengan ikhlas dan tulus.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- Kerja Tahun & Aron -->
+                <div class="col-md-6">
+                  <div class="p-3 rounded-3 bg-light h-100 border">
+                    <h4 class="h6 fw-bold text-danger mb-2">
+                      <i class="bi bi-sun-fill text-warning me-1"></i> Pesta Merdang Merdem & Tradisi "Aron"
+                    </h4>
+                    <p class="small text-secondary mb-2">
+                      <strong>Kerja Tahun (Merdang Merdem):</strong> Pesta adat tahunan tanda syukur atas berkah panen padi kepada Tuhan, merajut tali silaturahmi seluruh warga dan menyajikan makanan khas seperti <em>cimpa</em> dan <em>lemang</em>.
+                    </p>
+                    <p class="small text-secondary mb-0">
+                      <strong>Tradisi Aron:</strong> Bentuk gotong royong pemuda-pemudi desa bekerja sama menanam dan memanen padi secara bergiliran tanpa pamrih imbalan uang.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Nilai Peduli Alam -->
+              <div class="mt-4 p-3 bg-danger-subtle rounded-3 border border-danger">
+                <div class="fw-bold text-dark small mb-1"><i class="bi bi-tree-fill text-success me-1"></i> Menjaga Kelestarian Alam</div>
+                <div class="small text-secondary">
+                  Masyarakat Karo memiliki kearifan menjaga hutan dan sumber mata air pegunungan (Deleng Sibayak & Sinabung). Hutan tidak boleh dirusak karena merupakan sumber kehidupan anak cucu.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: KEARIFAN SIMALUNGUN -->
+          <div class="tab-pane fade" id="content-simalungun" role="tabpanel">
+            <div class="content-card culture-accent-simalungun p-4 mb-4">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="bg-info-subtle text-info p-2 rounded-circle">
+                  <i class="bi bi-gem fs-3"></i>
+                </div>
+                <div>
+                  <h3 class="h4 fw-bold text-dark mb-0">Habonaron Do Bona & Adab Penghormatan Simalungun</h3>
+                  <div class="text-muted small">Tanoh Habonaron Do Bona (Kabupaten Simalungun & Pematangsiantar)</div>
+                </div>
+              </div>
+
+              <div class="row g-4 mt-1">
+                <!-- Habonaron Do Bona -->
+                <div class="col-md-6">
+                  <div class="p-3 rounded-3 bg-light h-100 border">
+                    <h4 class="h6 fw-bold text-primary mb-2">
+                      <i class="bi bi-award-fill text-warning me-1"></i> Falsafah Agung: "Habonaron Do Bona"
+                    </h4>
+                    <p class="small text-secondary mb-2">
+                      Semboyan utama masyarakat Simalungun yang bermakna: <strong>"Kebenaran adalah Pangkal / Dasar dari Segala Hal"</strong>.
+                    </p>
+                    <ul class="small text-secondary mb-0 ps-3">
+                      <li>Setiap tindakan, ucapan, dan keputusan harus berlandaskan kejujuran.</li>
+                      <li>Berani mengakui kesalahan dan pantang berbuat curang demi keuntungan sesaat.</li>
+                      <li>Menepati janji dan adil kepada semua orang tanpa memandang status sosial.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- Tari Tor-tor Sombah & Kain Hiou -->
+                <div class="col-md-6">
+                  <div class="p-3 rounded-3 bg-light h-100 border">
+                    <h4 class="h6 fw-bold text-primary mb-2">
+                      <i class="bi bi-people-fill text-primary me-1"></i> Tor-tor Sombah & Kain Tenun Hiou
+                    </h4>
+                    <p class="small text-secondary mb-2">
+                      <strong>Tari Tor-tor Sombah:</strong> Tarian kehormatan dengan gerakan kedua belah tangan menangkup di depan dada penuh ketundukan dan rasa hormat kepada tamu, orang tua, dan pemimpin.
+                    </p>
+                    <p class="small text-secondary mb-0">
+                      <strong>Kain Hiou (Ulos Simalungun):</strong> Kain tenun sakral pembawa kehangatan dan doa perlindungan yang disematkan oleh tetua adat.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Nilai Luhur -->
+              <div class="mt-4 p-3 bg-info-subtle rounded-3 border border-info">
+                <div class="fw-bold text-dark small mb-1"><i class="bi bi-check-circle-fill text-info me-1"></i> Cermin Karakter Siswa Kelas VI</div>
+                <div class="small text-secondary">
+                  Mengamalkan "Habonaron Do Bona" berarti tidak mencontek saat ujian, selalu berkata jujur kepada guru dan orang tua, serta berani membela teman yang sedang diperlakukan tidak adil.
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Tombol Navigasi Bawah -->
+        <div class="d-flex justify-content-between align-items-center mt-4">
+          <button class="btn btn-outline-secondary" onclick="navTo('modul-1')">
+            <i class="bi bi-arrow-left me-1"></i> Kembali ke Modul 1
+          </button>
+          <button class="btn btn-primary" onclick="navTo('modul-3')">
+            Lanjut ke Modul 3: Penerapan Nyata <i class="bi bi-arrow-right ms-1"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 5: MODUL 3 - PENERAPAN NYATA          -->
+      <!-- ========================================== -->
+      <section id="view-modul-3" class="app-view">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+          <div>
+            <span class="text-uppercase text-success fw-bold small">Modul Pembelajaran 3</span>
+            <h2 class="h3 fw-bold text-dark">Penerapan Nyata dalam Kehidupan Siswa Sehari-hari</h2>
+          </div>
+          <button class="btn btn-sm btn-outline-secondary" onclick="navTo('home')">
+            <i class="bi bi-arrow-left me-1"></i> Beranda
+          </button>
+        </div>
+
+        <div class="row g-4">
+          <!-- Lingkungan Sekolah -->
+          <div class="col-lg-6">
+            <div class="content-card p-4 h-100">
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <div class="bg-success text-white p-2 rounded-2">
+                  <i class="bi bi-building fs-4"></i>
+                </div>
+                <div>
+                  <h3 class="h5 fw-bold text-dark mb-0">Di Lingkungan Sekolah (SD Inpres 105285)</h3>
+                  <div class="text-muted small">Kelas VI-a & Halaman Sekolah</div>
+                </div>
+              </div>
+
+              <div class="d-flex flex-column gap-3">
+                <div class="p-3 bg-light rounded-3 border">
+                  <div class="fw-bold text-dark small mb-1">
+                    <i class="bi bi-check2-circle text-success me-1"></i> Piket Gotong Royong (Nilai Aron Karo)
+                  </div>
+                  <div class="small text-muted">
+                    Membersihkan ruang kelas, menghapus papan tulis, dan merapikan perpustakaan bersama-sama tanpa saling lempar tugas.
+                  </div>
+                </div>
+
+                <div class="p-3 bg-light rounded-3 border">
+                  <div class="fw-bold text-dark small mb-1">
+                    <i class="bi bi-check2-circle text-success me-1"></i> Tutur Bahasa Santun (Adab Melayu)
+                  </div>
+                  <div class="small text-muted">
+                    Mengucapkan "terima kasih", "tolong", dan "maaf". Menyapa bapak/ibu guru dengan salam hormat dan berbicara lemah lembut.
+                  </div>
+                </div>
+
+                <div class="p-3 bg-light rounded-3 border">
+                  <div class="fw-bold text-dark small mb-1">
+                    <i class="bi bi-check2-circle text-success me-1"></i> Kejujuran Ulangan (Habonaron Do Bona Simalungun)
+                  </div>
+                  <div class="small text-muted">
+                    Mengerjakan soal ulangan dengan kemampuan sendiri, tidak membuka contekan, dan berani mengakui jika belum mengerti materi.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lingkungan Masyarakat & Rumah -->
+          <div class="col-lg-6">
+            <div class="content-card p-4 h-100">
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <div class="bg-primary text-white p-2 rounded-2">
+                  <i class="bi bi-houses fs-4"></i>
+                </div>
+                <div>
+                  <h3 class="h5 fw-bold text-dark mb-0">Di Lingkungan Rumah & Masyarakat</h3>
+                  <div class="text-muted small">Tandam Hilir I & Sekitarnya</div>
+                </div>
+              </div>
+
+              <div class="d-flex flex-column gap-3">
+                <div class="p-3 bg-light rounded-3 border">
+                  <div class="fw-bold text-dark small mb-1">
+                    <i class="bi bi-check2-circle text-primary me-1"></i> Menghormati Tetangga Beda Agama & Suku
+                  </div>
+                  <div class="small text-muted">
+                    Menjaga ketenangan saat tetangga sedang melaksanakan ibadah dan saling berbagi hantaran kue saat hari raya keagamaan.
+                  </div>
+                </div>
+
+                <div class="p-3 bg-light rounded-3 border">
+                  <div class="fw-bold text-dark small mb-1">
+                    <i class="bi bi-check2-circle text-primary me-1"></i> Menjaga Kelestarian Lingkungan Desa
+                  </div>
+                  <div class="small text-muted">
+                    Tidak membuang sampah sembarangan ke selokan/parit, menanam pohon peneduh di pekarangan rumah, dan menghemat pemakaian air bersih.
+                  </div>
+                </div>
+
+                <div class="p-3 bg-light rounded-3 border">
+                  <div class="fw-bold text-dark small mb-1">
+                    <i class="bi bi-check2-circle text-primary me-1"></i> Musyawarah Menyelesaikan Masalah Main
+                  </div>
+                  <div class="small text-muted">
+                    Jika terjadi perselisihan saat bermain bola atau permainan tradisional, dibicarakan baik-baik tanpa adu fisik atau ejek-mengejek suku.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tombol Lanjut -->
+        <div class="d-flex justify-content-between align-items-center mt-4">
+          <button class="btn btn-outline-secondary" onclick="navTo('modul-2')">
+            <i class="bi bi-arrow-left me-1"></i> Kembali ke Modul 2
+          </button>
+          <button class="btn btn-primary" onclick="navTo('simulasi')">
+            Lanjut ke Simulasi Interaktif <i class="bi bi-arrow-right ms-1"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 6: SIMULASI INTERAKTIF KASUS SISWA    -->
+      <!-- ========================================== -->
+      <section id="view-simulasi" class="app-view">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+          <div>
+            <span class="text-uppercase text-primary fw-bold small">Aktivitas Praktik Interaktif</span>
+            <h2 class="h3 fw-bold text-dark">Simulasi Dilema Karakter & Kebhinekaan</h2>
+          </div>
+          <button class="btn btn-sm btn-outline-secondary" onclick="navTo('home')">
+            <i class="bi bi-arrow-left me-1"></i> Beranda
+          </button>
+        </div>
+
+        <div class="row g-4">
+          <!-- Area Skenario Utama -->
+          <div class="col-lg-8">
+            <div class="content-card p-4">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <span class="badge bg-primary px-3 py-2" id="sim-scenario-badge">Kasus 1 dari 3</span>
+                <span class="text-muted small" id="sim-kearifan-target">Falsafah: Melayu & Musyawarah</span>
+              </div>
+
+              <!-- Judul & Narasi Kasus -->
+              <h3 class="h5 fw-bold text-dark mb-2" id="sim-scenario-title">Pemilihan Ketua Regu Pramuka Kelas VI-a</h3>
+              <p class="text-secondary mb-4" id="sim-scenario-story" style="line-height: 1.6;">
+                Regu Pramuka Kelas VI-a sedang bermusyawarah memilih ketua regu baru untuk lomba jambore. Teman dekatmu berasal dari suku yang sama denganmu, tetapi ia jarang hadir latihan dan sering terlambat. Sementara itu, seorang teman dari suku berbeda sangat disiplin, terampil tali-temali, dan ramah. Bagaimana sikap bijak yang kamu ambil?
+              </p>
+
+              <!-- Pilihan Aksi Keputusan -->
+              <div class="d-flex flex-column gap-3 mb-4" id="sim-options-container">
+                <!-- Di-generate via JS -->
+              </div>
+
+              <!-- Kotak Umpan Balik Refleksi -->
+              <div id="sim-feedback-box" class="p-3 rounded-3 d-none border">
+                <div class="d-flex align-items-center gap-2 mb-1">
+                  <i id="sim-feedback-icon" class="bi bi-check-circle-fill fs-5"></i>
+                  <strong id="sim-feedback-status">Tepat Sekali!</strong>
+                </div>
+                <p class="small mb-2" id="sim-feedback-text">Penjelasan refleksi hikmah kearifan lokal.</p>
+                <div class="d-flex justify-content-end">
+                  <button id="sim-next-btn" class="btn btn-sm btn-primary" onclick="simulasiNextHandler()">
+                    Lanjut Kasus Berikutnya <i class="bi bi-arrow-right ms-1"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar Petunjuk & Nilai Refleksi -->
+          <div class="col-lg-4">
+            <div class="content-card p-4 h-100 bg-light">
+              <h4 class="h6 fw-bold text-dark mb-3">
+                <i class="bi bi-lightbulb text-warning me-1"></i> Mengapa Simulasi Ini Penting?
+              </h4>
+              <p class="small text-muted mb-3">
+                Kearifan lokal bukan sekadar teori hafalan, melainkan lentera penuntun saat siswa menghadapi pilihan nyata di sekolah.
+              </p>
+              
+              <div class="p-3 bg-white rounded-3 border mb-3">
+                <div class="fw-bold small text-success mb-1">1. Adab Melayu</div>
+                <div class="small text-muted">Menyelesaikan perbedaan dengan musyawarah mufakat tanpa emosi.</div>
+              </div>
+
+              <div class="p-3 bg-white rounded-3 border mb-3">
+                <div class="fw-bold small text-danger mb-1">2. Aron Karo</div>
+                <div class="small text-muted">Mengutamakan kepentingan bersama dan kerja sama gotong royong.</div>
+              </div>
+
+              <div class="p-3 bg-white rounded-3 border">
+                <div class="fw-bold small text-info mb-1">3. Habonaron Simalungun</div>
+                <div class="small text-muted">Berani memilih kebenaran dan kejujuran di atas rasa sungkan.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tombol Lanjut ke Kuis Asesmen -->
+        <div class="d-flex justify-content-between align-items-center mt-4">
+          <button class="btn btn-outline-secondary" onclick="navTo('modul-3')">
+            <i class="bi bi-arrow-left me-1"></i> Kembali ke Modul 3
+          </button>
+          <button class="btn btn-success" onclick="navTo('kuis')">
+            Lanjut ke Kuis Asesmen (8 Soal) <i class="bi bi-pencil-square ms-1"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 7: KUIS ASESMEN (8 SOAL STUDI KASUS)  -->
+      <!-- ========================================== -->
+      <section id="view-kuis" class="app-view">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <div>
+            <span class="text-uppercase text-success fw-bold small">Asesmen Pemahaman Mandiri</span>
+            <h2 class="h3 fw-bold text-dark mb-0">Kuis Kearifan Lokal & Kebhinekaan</h2>
+          </div>
+          <button class="btn btn-sm btn-outline-secondary" onclick="navTo('home')">
+            <i class="bi bi-arrow-left me-1"></i> Beranda
+          </button>
+        </div>
+
+        <!-- Progress Bar & Indikator Soal -->
+        <div class="content-card p-3 mb-4">
+          <div class="d-flex justify-content-between align-items-center mb-2 small">
+            <span class="fw-bold text-dark">
+              Pertanyaan <span id="quiz-current-num">1</span> dari <span id="quiz-total-num">8</span>
+            </span>
+            <span class="text-muted" id="quiz-student-badge">Siswa: -</span>
+          </div>
+          <div class="progress" style="height: 8px;">
+            <div id="quiz-progress-bar" class="progress-bar bg-success" role="progressbar" style="width: 12.5%;"></div>
+          </div>
+        </div>
+
+        <!-- Area Soal Aktif -->
+        <div class="content-card p-4 p-md-5 mb-4">
+          <div id="quiz-card-content">
+            <div class="badge bg-light text-secondary border mb-3" id="quiz-topic-badge">Topik: Budaya Melayu</div>
+            <h3 class="h5 fw-bold text-dark mb-4" id="quiz-question-text" style="line-height: 1.6;">
+              Teks pertanyaan kuis akan dimuat di sini...
+            </h3>
+
+            <div class="d-flex flex-column gap-3 mb-4" id="quiz-options-container">
+              <!-- Pilihan A, B, C, D di-render otomatis via JavaScript -->
+            </div>
+          </div>
+
+          <!-- Navigasi Tombol Soal -->
+          <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+            <button id="quiz-prev-btn" class="btn btn-outline-secondary" onclick="quizPrevHandler()" disabled>
+              <i class="bi bi-chevron-left me-1"></i> Soal Sebelumnya
+            </button>
+            <button id="quiz-next-btn" class="btn btn-primary" onclick="quizNextHandler()">
+              Soal Selanjutnya <i class="bi bi-chevron-right ms-1"></i>
+            </button>
+            <button id="quiz-submit-btn" class="btn btn-success d-none fw-bold" onclick="quizSubmitHandler()">
+              <i class="bi bi-check2-all me-1"></i> Kumpulkan & Lihat Hasil
+            </button>
+          </div>
+        </div>
+
+        <!-- Nomor Soal Palet Cepat -->
+        <div class="content-card p-3">
+          <div class="small fw-bold text-muted mb-2">Navigasi Cepat Nomor Soal:</div>
+          <div class="d-flex flex-wrap gap-2" id="quiz-palette">
+            <!-- Tombol 1 s.d. 8 di-render JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 8: RAPOR & KARTU CAPAIAN BELAJAR      -->
+      <!-- ========================================== -->
+      <section id="view-rapor" class="app-view">
+        
+        <!-- Bar Aksi Atas (Hanya Tampil di Layar, Tersembunyi saat Cetak) -->
+        <div class="no-print d-flex flex-wrap align-items-center justify-content-between gap-2 mb-4">
+          <div>
+            <span class="text-uppercase text-primary fw-bold small">Hasil Evaluasi Belajar Mandiri</span>
+            <h2 class="h3 fw-bold text-dark mb-0">Kartu Capaian Belajar Siswa</h2>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline-secondary btn-sm" onclick="navTo('home')">
+              <i class="bi bi-house me-1"></i> Beranda
+            </button>
+            <button class="btn btn-outline-primary btn-sm" onclick="ulangiKuis()">
+              <i class="bi bi-arrow-repeat me-1"></i> Ulangi Kuis
+            </button>
+            <button class="btn btn-success btn-sm fw-bold shadow-sm" onclick="cetakRapor()">
+              <i class="bi bi-printer-fill me-1"></i> Simpan / Cetak PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- KARTU CAPAIAN RESMI (Tercetak Rapi 1 Halaman A4) -->
+        <div class="certificate-card mx-auto" style="max-width: 820px;">
+          <div class="cert-border-inner">
+            
+            <!-- Kop Piagam Resmi Satuan Pendidikan -->
+            <div class="text-center pb-3 border-bottom mb-4">
+              <div class="text-uppercase fw-bold text-muted small" style="letter-spacing: 0.1em;">
+                Pemerintah Kabupaten Deli Serdang &middot; Dinas Pendidikan
+              </div>
+              <h2 class="h4 fw-bold text-dark text-uppercase my-1">
+                UPT SPF SD INPRES 105285 TANDAM HILIR I
+              </h2>
+              <div class="small text-secondary">
+                Kecamatan Hamparan Perak &middot; Kelas VI-a &middot; Tahun Ajaran 2024/2025
+              </div>
+              <div class="fw-bold text-primary mt-2 text-uppercase" style="letter-spacing: 0.05em; font-size: 0.95rem;">
+                KARTU CAPAIAN PEMBELAJARAN: KEARIFAN LOKAL & KEBHINEKAAN
+              </div>
+            </div>
+
+            <!-- Identitas Siswa -->
+            <div class="row g-3 mb-4 align-items-center">
+              <div class="col-sm-8">
+                <table class="table table-sm table-borderless mb-0 small">
+                  <tr>
+                    <td class="text-muted" style="width: 140px;">Nama Siswa</td>
+                    <td>: <strong id="rapor-nama" class="text-dark fs-6">-</strong></td>
+                  </tr>
+                  <tr>
+                    <td class="text-muted">Nomor Absen</td>
+                    <td>: <strong id="rapor-absen">-</strong></td>
+                  </tr>
+                  <tr>
+                    <td class="text-muted">NIS / NISN</td>
+                    <td>: <span id="rapor-nis">-</span> / <span id="rapor-nisn">-</span></td>
+                  </tr>
+                  <tr>
+                    <td class="text-muted">Mata Pelajaran</td>
+                    <td>: Pendidikan Pancasila (Muatan Kearifan Lokal Sumut)</td>
+                  </tr>
+                </table>
+              </div>
+
+              <!-- Cap Skor Nilai Akhir -->
+              <div class="col-sm-4 text-center">
+                <div class="d-inline-flex flex-column align-items-center">
+                  <div class="cert-seal mb-1" id="rapor-seal-skor">
+                    <span id="rapor-skor-angka">0</span>
+                  </div>
+                  <div class="fw-bold small text-dark" id="rapor-predikat-badge">Predikat: Baik</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Umpan Balik Deskriptif Personal Otomatis -->
+            <div class="p-3 rounded-3 bg-light border mb-4">
+              <div class="fw-bold text-dark small mb-1">
+                <i class="bi bi-chat-quote-fill text-primary me-1"></i> Catatan Capaian Belajar Guru:
+              </div>
+              <p class="small text-secondary mb-0" id="rapor-catatan-guru" style="line-height: 1.6;">
+                Siswa telah menyelesaikan media pembelajaran interaktif kearifan lokal Melayu, Karo, dan Simalungun.
+              </p>
+            </div>
+
+            <!-- Rincian Capaian Materi Modul -->
+            <div class="table-responsive mb-4">
+              <table class="table table-bordered table-sm small align-middle mb-0">
+                <thead class="table-light text-center">
+                  <tr>
+                    <th style="width: 40px;">No</th>
+                    <th>Fokus Materi Pembelajaran</th>
+                    <th style="width: 130px;">Keterangan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-center">1</td>
+                    <td><strong>Konsep Kebhinekaan:</strong> Memahami toleransi, persatuan dalam keragaman suku di Sumatera Utara.</td>
+                    <td class="text-center text-success"><i class="bi bi-check-circle-fill me-1"></i> Tuntas</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">2</td>
+                    <td><strong>Budaya Melayu:</strong> Memahami tradisi Tepung Tawar, adab santun berbicara, dan musyawarah.</td>
+                    <td class="text-center text-success"><i class="bi bi-check-circle-fill me-1"></i> Tuntas</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">3</td>
+                    <td><strong>Budaya Karo:</strong> Memahami falsafah kekerabatan Rakut Sitelu, pesta Kerja Tahun, dan gotong royong Aron.</td>
+                    <td class="text-center text-success"><i class="bi bi-check-circle-fill me-1"></i> Tuntas</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">4</td>
+                    <td><strong>Budaya Simalungun:</strong> Memahami falsafah Habonaron Do Bona (kejujuran), Tor-tor Sombah, dan Hiou.</td>
+                    <td class="text-center text-success"><i class="bi bi-check-circle-fill me-1"></i> Tuntas</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Tanda Tangan Guru Pengembang Resmi -->
+            <div class="row pt-2 align-items-end">
+              <div class="col-6 text-center">
+                <div class="small text-muted mb-4">Mengetahui Orang Tua/Wali,</div>
+                <div class="pt-4 border-bottom d-inline-block" style="width: 170px;"></div>
+                <div class="small text-muted mt-1">( ........................................ )</div>
+              </div>
+              <div class="col-6 text-center">
+                <div class="small text-muted mb-1" id="rapor-tanggal-cetak">Tandam Hilir I, -</div>
+                <div class="small text-muted mb-4">Guru Kelas VI-a (Pengembang),</div>
+                <div class="pt-4 border-bottom d-inline-block fw-bold text-dark" style="width: 200px;">
+                  Asriza Rinandar, S.Pd
+                </div>
+                <div class="small text-muted mt-1">NIP. Pengembang Media</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Tombol Aksi Bawah -->
+        <div class="no-print text-center mt-4">
+          <button class="btn btn-outline-secondary me-2" onclick="navTo('home')">
+            <i class="bi bi-house me-1"></i> Beranda Utama
+          </button>
+          <button class="btn btn-success fw-bold" onclick="cetakRapor()">
+            <i class="bi bi-printer-fill me-1"></i> Cetak Dokumen Rapor
+          </button>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 9: RUANG GURU & REKAP KELAS VI-a      -->
+      <!-- ========================================== -->
+      <section id="view-guru" class="app-view">
+        <div class="no-print d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+          <div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <span class="badge bg-warning text-dark fw-bold px-2 py-1">
+                <i class="bi bi-mortarboard-fill me-1"></i> Dashboard Pengampu & Pengembang
+              </span>
+              <span class="text-muted small">Kelas VI-a &middot; UPT SPF SD Inpres 105285 Tandam Hilir I</span>
+            </div>
+            <h2 class="h3 fw-bold text-dark mb-0">Ruang Guru & Rekapitulasi Pembelajaran</h2>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline-secondary btn-sm" onclick="navTo('home')">
+              <i class="bi bi-house me-1"></i> Beranda
+            </button>
+            <button class="btn btn-success btn-sm fw-bold shadow-sm" onclick="cetakRekapKelas()">
+              <i class="bi bi-printer-fill me-1"></i> Cetak Rekap Nilai Kelas
+            </button>
+          </div>
+        </div>
+
+        <!-- KPI Ringkasan Kelas -->
+        <div class="row g-3 mb-4">
+          <div class="col-6 col-md-3">
+            <div class="content-card p-3 text-center">
+              <div class="text-muted small">Total Siswa</div>
+              <div class="h3 fw-bold text-dark my-1">23</div>
+              <span class="text-success small fw-semibold"><i class="bi bi-people-fill me-1"></i> Terdata Lengkap</span>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="content-card p-3 text-center">
+              <div class="text-muted small">Ketuntasan Belajar</div>
+              <div class="h3 fw-bold text-success my-1" id="kpi-tuntas">23 / 23</div>
+              <span class="text-muted small">100% Mengikuti</span>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="content-card p-3 text-center">
+              <div class="text-muted small">Rata-rata Nilai</div>
+              <div class="h3 fw-bold text-primary my-1" id="kpi-rata-rata">89.1</div>
+              <span class="text-primary small fw-semibold">Predikat: Sangat Baik</span>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="content-card p-3 text-center">
+              <div class="text-muted small">Fokus Budaya Sumut</div>
+              <div class="h3 fw-bold text-warning my-1">3 Etnis</div>
+              <span class="text-muted small">Melayu, Karo, Simalungun</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabel Rekap 23 Siswa -->
+        <div class="content-card p-4 mb-4">
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+            <div>
+              <h3 class="h5 fw-bold text-dark mb-1">
+                <i class="bi bi-table me-2 text-primary"></i>Daftar Presensi & Nilai Siswa Kelas VI-a
+              </h3>
+              <div class="text-muted small">Data presensi dan asesmen mandiri siswa materi Kearifan Lokal & Kebhinekaan</div>
+            </div>
+            <div class="no-print text-muted small">
+              <i class="bi bi-info-circle me-1"></i> Klik <strong>"Cetak Rapor"</strong> pada baris siswa untuk mencetak sertifikat individual.
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-hover table-bordered align-middle small mb-0">
+              <thead class="table-light text-center">
+                <tr>
+                  <th style="width: 45px;">No</th>
+                  <th style="width: 100px;">NIS</th>
+                  <th style="width: 110px;">NISN</th>
+                  <th>Nama Lengkap Siswa</th>
+                  <th style="width: 110px;">Status Belajar</th>
+                  <th style="width: 80px;">Skor</th>
+                  <th style="width: 170px;">Predikat</th>
+                  <th class="no-print text-center" style="width: 140px;">Aksi Guru</th>
+                </tr>
+              </thead>
+              <tbody id="tabel-rekap-siswa-body">
+                <!-- Di-render via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Panel Kunci Jawaban & Rubrik Capaian Pembelajaran -->
+        <div class="content-card p-4 mb-4 no-print">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <div>
+              <h3 class="h5 fw-bold text-dark mb-1">
+                <i class="bi bi-key-fill text-warning me-2"></i>Kunci Jawaban & Rubrik Capaian Pembelajaran
+              </h3>
+              <div class="text-muted small">Panduan analisis butir soal asesmen untuk guru pengampu</div>
+            </div>
+            <span class="badge bg-light text-secondary border">8 Butir Soal</span>
+          </div>
+
+          <div class="accordion" id="accordionKunciJawaban">
+            <!-- Di-render via JavaScript -->
+          </div>
+        </div>
+
+        <!-- Catatan Administrasi Guru (Muncul saat print rekap) -->
+        <div class="row pt-4 text-center">
+          <div class="col-6">
+            <div class="small text-muted mb-4">Mengetahui Kepala Sekolah,</div>
+            <div class="pt-4 border-bottom d-inline-block" style="width: 180px;"></div>
+            <div class="small text-muted mt-1">( ........................................ )</div>
+          </div>
+          <div class="col-6">
+            <div class="small text-muted mb-1" id="rekap-tanggal-cetak">Tandam Hilir I, -</div>
+            <div class="small text-muted mb-4">Guru Kelas VI-a (Pengembang),</div>
+            <div class="pt-4 border-bottom d-inline-block fw-bold text-dark" style="width: 200px;">
+              Asriza Rinandar, S.Pd
+            </div>
+            <div class="small text-muted mt-1">NIP. Pengembang Media</div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ========================================== -->
+  <footer class="app-footer no-print py-3 mt-auto">
+    <div class="container-xl d-flex flex-wrap align-items-center justify-content-between text-muted small">
+      <div>
+        &copy; 2025 <strong>UPT SPF SD Inpres 105285 Tandam Hilir I</strong> &middot; Media Pembelajaran Kearifan Lokal
+      </div>
+      <div>
+        Pengembang: <strong>Asriza Rinandar, S.Pd</strong> (Guru Kelas VI-a)
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================== -->
+  <!-- MODAL BANTUAN & PETUNJUK PENGGUNAAN        -->
+  <!-- ========================================== -->
+  <div class="modal fade no-print" id="modalBantuan" tabindex="-1" aria-labelledby="modalBantuanLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title h6 fw-bold" id="modalBantuanLabel">
+            <i class="bi bi-question-circle-fill me-1"></i> Petunjuk Penggunaan Aplikasi
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-start gap-3">
+              <span class="badge bg-success rounded-circle p-2">1</span>
+              <div>
+                <strong class="text-dark">Pilih Identitas Siswa:</strong>
+                <p class="small text-muted mb-0">Di layar awal, pilih nama lengkapmu pada daftar dropdown 23 siswa kelas VI-a.</p>
+              </div>
+            </div>
+            <div class="d-flex align-items-start gap-3">
+              <span class="badge bg-success rounded-circle p-2">2</span>
+              <div>
+                <strong class="text-dark">Pelajari Tiga Modul:</strong>
+                <p class="small text-muted mb-0">Baca materi Konsep Dasar, Eksplorasi Budaya Melayu, Karo, Simalungun, serta Penerapan Keseharian.</p>
+              </div>
+            </div>
+            <div class="d-flex align-items-start gap-3">
+              <span class="badge bg-success rounded-circle p-2">3</span>
+              <div>
+                <strong class="text-dark">Uji Karakter di Simulasi:</strong>
+                <p class="small text-muted mb-0">Ikuti simulasi pemecahan dilema siswa untuk menguji keputusan bijakmu.</p>
+              </div>
+            </div>
+            <div class="d-flex align-items-start gap-3">
+              <span class="badge bg-success rounded-circle p-2">4</span>
+              <div>
+                <strong class="text-dark">Kerjakan Kuis & Cetak Rapor:</strong>
+                <p class="small text-muted mb-0">Jawab 8 soal studi kasus hingga tuntas untuk memperoleh nilai dan mencetak Kartu Capaian Belajar.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer bg-light py-2">
+          <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 Bundle JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT LOGIC LENGKAP & MANDIRI         -->
+  <!-- ========================================== -->
+  <script>
+    // --- 1. DATA 23 SISWA KELAS VI-a TERPASANG ---
+    const dataSiswa = [
+      { no: 1, nisn: "3150955025", nis: "1510", nama: "ADIBA SYAKILA" },
+      { no: 2, nisn: "3147586584", nis: "1500", nama: "AHMAD AL HAFEEZHI" },
+      { no: 3, nisn: "3143070256", nis: "1522", nama: "AL HAFIZ FATAN ADHA" },
+      { no: 4, nisn: "3157043374", nis: "1507", nama: "AGHA FATHAN ZAMY" },
+      { no: 5, nisn: "3142930072", nis: "1491", nama: "ALITA" },
+      { no: 6, nisn: "3141592328", nis: "1502", nama: "ALTHAF DIRGA PRATAMA" },
+      { no: 7, nisn: "3156830522", nis: "1504", nama: "AMELIA YASMIN" },
+      { no: 8, nisn: "3138727276", nis: "1498", nama: "ERICK NUGRAHA" },
+      { no: 9, nisn: "3157680140", nis: "1508", nama: "FRADIVTA RAMAZAN" },
+      { no: 10, nisn: "3150837601", nis: "1509", nama: "KESYAVANI KHUMAIRA" },
+      { no: 11, nisn: "3154748433", nis: "1506", nama: "LUCKY AYDI PRANAJA" },
+      { no: 12, nisn: "3155690531", nis: "1511", nama: "MUHAMMAD ROHAN RABIKI AL-FATIH" },
+      { no: 13, nisn: "3140151468", nis: "1499", nama: "MUHAMMAD REYHAN PRATAMA" },
+      { no: 14, nisn: "3165648313", nis: "1513", nama: "NASYA ATHIFAH" },
+      { no: 15, nisn: "3144324661", nis: "1493", nama: "RAMDAN" },
+      { no: 16, nisn: "3154780432", nis: "1496", nama: "RIZKY ADHITYA" },
+      { no: 17, nisn: "3159559810", nis: "1505", nama: "IRMA JUWINTA Br SIREGAR" },
+      { no: 18, nisn: "3148345899", nis: "1501", nama: "YASHRAISA FAHIRA" },
+      { no: 19, nisn: "3153148121", nis: "1535", nama: "KRISNA ZEFANYA TAMBUNAN" },
+      { no: 20, nisn: "3152202030", nis: "1527", nama: "KEYLA ISNAINA" },
+      { no: 21, nisn: "3159312121", nis: "1678", nama: "M. AYAZ" },
+      { no: 22, nisn: "3157036973", nis: "1679", nama: "DIFA ASMAWIJAYA" },
+      { no: 23, nisn: "3150745503", nis: "1733", nama: "MUHAMMAD ARVI ALVIANSYAH" }
+    ];
+
+    // --- 2. DATA SKENARIO SIMULASI DILEMA SISWA ---
+    const dataSimulasi = [
+      {
+        id: 1,
+        title: "Pemilihan Ketua Regu Pramuka Kelas VI-a",
+        kearifan: "Falsafah Melayu: Musyawarah Mufakat & Adab Berbicara",
+        story: "Regu Pramuka Kelas VI-a sedang bermusyawarah memilih ketua regu untuk kegiatan Persami. Sahabat karibmu yang satu suku ingin menjadi ketua, tetapi ia sering terlambat dan kurang menguasai simpul tali. Teman lainnya dari suku berbeda sangat rajin, menguasai sandi morse, dan ramah. Tindakan apa yang paling bijak kamu lakukan?",
+        options: [
+          {
+            text: "Memilih sahabat karib hanya karena satu suku dan teman bermain sehari-hari.",
+            correct: false,
+            feedback: "Kurang tepat. Memilih hanya karena kesamaan suku bertentangan dengan prinsip kebhinekaan dan musyawarah mufakat yang mengutamakan kemaslahatan bersama."
+          },
+          {
+            text: "Mengusulkan musyawarah terbuka secara santun dan memilih teman yang cakap serta bertanggung jawab demi keberhasilan seluruh regu.",
+            correct: true,
+            feedback: "Tepat Sekali! Sesuai pepatah Melayu: 'Bulat air karena pembuluh, bulat kata karena mufakat'. Keputusan diambil demi kebaikan bersama tanpa membedakan suku bangsa."
+          },
+          {
+            text: "Memutuskan untuk tidak ikut campur dan membiarkan teman-teman bertengkar.",
+            correct: false,
+            feedback: "Kurang bijak. Sikap apatis tidak mencerminkan semangat gotong royong dan kepedulian antarsesama."
+          }
+        ]
+      },
+      {
+        id: 2,
+        title: "Dompet Terjatuh di Bawah Pohon Sekolah",
+        kearifan: "Falsafah Simalungun: Habonaron Do Bona (Kebenaran Adalah Pangkal)",
+        story: "Saat jam istirahat di SD Inpres 105285 Tandam Hilir I, kamu melihat sebuah dompet kecil berisi uang saku terjatuh di bawah pohon rindang. Situasi sekitar sedang sepi dan tidak ada orang yang melihatmu. Sikap apa yang mencerminkan falsafah 'Habonaron Do Bona'?",
+        options: [
+          {
+            text: "Mengambil uangnya untuk jajan dan membuang dompetnya agar tidak ketahuan siapapun.",
+            correct: false,
+            feedback: "Keliru. Tindakan ini melanggar nilai kejujuran luhur dan merugikan kawan sekolah."
+          },
+          {
+            text: "Segera mengambil dompet tersebut dan menyerahkannya kepada Bapak/Ibu Guru piket agar diumumkan kepada pemiliknya.",
+            correct: true,
+            feedback: "Luar Biasa! 'Habonaron Do Bona' mengajarkan bahwa kebenaran dan kejujuran adalah pangkal dari segala tindakan. Kejujuran melahirkan ketenteraman batin."
+          },
+          {
+            text: "Membiarkannya begitu saja tanpa memberi tahu siapapun.",
+            correct: false,
+            feedback: "Kurang peka. Membantu mengamankan barang teman yang tercecer adalah wujud kepedulian nyata."
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: "Kerja Bakti Membersihkan Halaman Sekolah",
+        kearifan: "Falsafah Karo: Semangat Gotong Royong Aron & Rakut Sitelu",
+        story: "Menjelang peringatan HUT Kemerdekaan RI, sekolah mengadakan kerja bakti membersihkan taman dan saluran air. Sebagian siswa tampak lelah mengangkat tumpukan daun kering. Apa yang kamu lakukan bersama teman-teman?",
+        options: [
+          {
+            text: "Duduk santai di kantin sambil menunggu giliran diperiksa guru.",
+            correct: false,
+            feedback: "Kurang terpuji. Gotong royong membutuhkan kebersamaan dan ketulusan berbagi tenaga."
+          },
+          {
+            text: "Bersama-sama teman saling bahu-membahu membawa gerobak sampah tanpa mengeluh dan tanpa membeda-bedakan tugas suku kawan.",
+            correct: true,
+            feedback: "Sangat Tepat! Ini adalah perwujudan tradisi 'Aron' dari suku Karo, di mana beban berat dipikul bersama secara bergiliran penuh persaudaraan."
+          },
+          {
+            text: "Hanya menyapu di depan kelas sendiri dan menolak membantu kelas sebelah.",
+            correct: false,
+            feedback: "Kurang tepat. Halaman sekolah adalah milik bersama yang harus dijaga dengan keikhlasan hati."
+          }
+        ]
+      }
+    ];
+
+    // --- 3. DATA SOAL KUIS PILIHAN GANDA (8 SOAL STUDI KASUS) ---
+    const dataKuis = [
+      {
+        id: 1,
+        topic: "Konsep Dasar Kebhinekaan",
+        pertanyaan: "Di kelas VI-a SD Inpres 105285 Tandam Hilir I, terdapat siswa bersuku Melayu, Karo, Simalungun, Jawa, dan Batubara. Sikap yang paling tepat dalam menerapkan semboyan 'Bhinneka Tunggal Ika' di kelas adalah...",
+        options: [
+          "Hanya mau berteman akrab dengan teman yang berasal dari suku dan agama yang sama.",
+          "Menghormati perbedaan adat istiadat dan bekerja sama dengan semua teman tanpa membeda-bedakan.",
+          "Meminta semua teman berbicara dengan satu logat bahasa adat saja di lingkungan sekolah.",
+          "Menjauhi teman yang memiliki kebiasaan adat tradisi berbeda."
+        ],
+        jawaban: 1,
+        penjelasan: "Bhinneka Tunggal Ika mengajarkan persatuan dalam perbedaan. Semua siswa berhak dihargai dan diajak bekerja sama secara setara."
+      },
+      {
+        id: 2,
+        topic: "Kearifan Budaya Melayu",
+        pertanyaan: "Dalam tradisi Melayu Sumatera Utara, upacara Tepung Tawar sering dilakukan saat menyambut hal baru atau merayakan keberhasilan. Makna luhur yang terkandung dalam taburan beras kuning dan bertih adalah...",
+        options: [
+          "Sebagai tanda kemewahan dan pamer kekayaan keluarga.",
+          "Lambang doa restu keselamatan, kemuliaan budi pekerti, dan penyejuk hati.",
+          "Syarat agar anak menjadi lebih ditakuti oleh lawan bicaranya.",
+          "Upacara hiburan tanpa memiliki pesan moral bagi kehidupan."
+        ],
+        jawaban: 1,
+        penjelasan: "Tepung Tawar adalah upacara doa keselamatan dan penawar rasa duka, melambangkan kebersihan hati serta harapan akan keberkahan budi pekerti."
+      },
+      {
+        id: 3,
+        topic: "Kearifan Budaya Melayu",
+        pertanyaan: "Ungkapan adat Melayu 'Bulat air karena pembuluh, bulat kata karena mufakat' mengajarkan kepada kita tentang pentingnya...",
+        options: [
+          "Mengambil keputusan sepihak oleh ketua kelas tanpa mendengarkan anggota.",
+          "Musyawarah untuk mufakat dalam menyelesaikan setiap persoalan bersama secara damai.",
+          "Memaksakan kehendak pribadi kepada orang lain.",
+          "Menyerah begitu saja saat terjadi perbedaan pendapat di kelas."
+        ],
+        jawaban: 1,
+        penjelasan: "Pepatah ini menegaskan bahwa kebulatan tekad dan kerukunan diperoleh melalui jalan musyawarah yang santun."
+      },
+      {
+        id: 4,
+        topic: "Kearifan Budaya Karo",
+        pertanyaan: "Falsafah kekerabatan luhur suku Karo yang mengatur hubungan tiga unsur (Kalimbubu, Senina, dan Anak Beru) dikenal dengan nama...",
+        options: [
+          "Dalihan Na Tolu",
+          "Rakut Sitelu",
+          "Habonaron Do Bona",
+          "Tepung Tawar"
+        ],
+        jawaban: 1,
+        penjelasan: "Rakut Sitelu adalah sistem kekerabatan masyarakat Karo yang terdiri atas Kalimbubu (dimuliakan), Senina (saudara sederajat), dan Anak Beru (pekerja/pelayan adat)."
+      },
+      {
+        id: 5,
+        topic: "Kearifan Budaya Karo",
+        pertanyaan: "Masyarakat Karo memiliki tradisi 'Aron' dan perayaan 'Kerja Tahun / Merdang Merdem'. Nilai karakter Profil Pelajar Pancasila yang paling menonjol dari tradisi ini adalah...",
+        options: [
+          "Kemadirian tanpa memerlukan bantuan orang lain.",
+          "Gotong royong dan rasa syukur kepada Tuhan Yang Maha Esa atas rezeki alam.",
+          "Persaingan mencari keuntungan materi sebesar-besarnya.",
+          "Kebiasaan berpesta tanpa memperhatikan kelestarian lingkungan."
+        ],
+        jawaban: 1,
+        penjelasan: "Aron adalah gotong royong mengolah ladang tanpa pamrih upah, sedangkan Merdang Merdem adalah pesta syukur panen yang memupuk silaturahmi."
+      },
+      {
+        id: 6,
+        topic: "Kearifan Budaya Simalungun",
+        pertanyaan: "Semboyan luhur suku Simalungun 'Habonaron Do Bona' memiliki arti yang sangat mendalam bagi pembentukan karakter siswa, yaitu...",
+        options: [
+          "Kekuatan fisik adalah penentu kemenangan.",
+          "Kebenaran adalah pangkal/dasar dari segala perbuatan.",
+          "Kekayaan harta adalah kemuliaan sejati.",
+          "Kemenangan harus diraih dengan cara apapun."
+        ],
+        jawaban: 1,
+        penjelasan: "'Habonaron Do Bona' bermakna kebenaran adalah pangkal/dasar. Menuntut setiap orang untuk jujur, adil, dan memegang teguh kebenaran."
+      },
+      {
+        id: 7,
+        topic: "Kearifan Budaya Simalungun",
+        pertanyaan: "Saat menyambut tamu kehormatan atau orang tua pada pesta adat Simalungun, ditarikan tarian dengan kedua telapak tangan menangkup di depan dada penuh takzim. Tarian adat tersebut adalah...",
+        options: [
+          "Tari Saman",
+          "Tari Tor-tor Sombah",
+          "Tari Piring",
+          "Tari Gundala-gundala"
+        ],
+        jawaban: 1,
+        penjelasan: "Tor-tor Sombah adalah tarian sakral suku Simalungun sebagai wujud penghormatan luhur kepada tamu, tetua, dan pemimpin."
+      },
+      {
+        id: 8,
+        topic: "Penerapan Nyata di Sekolah",
+        pertanyaan: "Rizky melihat Difa kesulitan mengangkat tumpukan buku tema ke ruang guru. Walaupun Rizky sedang asyik berbincang dengan teman sukunya, Rizky segera bergegas membantu Difa. Sikap Rizky mencerminkan perpaduan nilai...",
+        options: [
+          "Sopan santun Melayu, tolong-menolong Aron Karo, dan keikhlasan hati.",
+          "Sikap ingin dipuji oleh guru kelas agar mendapat nilai tinggi.",
+          "Sikap terpaksa karena takut ditegur oleh pengurus kelas.",
+          "Rasa gengsi terhadap teman-teman sekelas lainnya."
+        ],
+        jawaban: 0,
+        penjelasan: "Tindakan tulus menolong kawan tanpa memandang latar belakang suku adalah implementasi nyata dari kearifan lokal Sumatera Utara."
+      }
+    ];
+
+    // --- 4. STATE MANAJEMEN APLIKASI ---
+    let currentUserRole = 'siswa'; // 'siswa' atau 'guru'
+    let activeStudent = null;
+    const activeGuru = {
+      nama: "Asriza Rinandar, S.Pd",
+      jabatan: "Guru Kelas VI-a",
+      satuan: "UPT SPF SD Inpres 105285 Tandam Hilir I",
+      peran: "Pengembang & Pengampu Media"
+    };
+    let currentSimulasiIndex = 0;
+    let currentQuizIndex = 0;
+    let studentAnswers = new Array(dataKuis.length).fill(null);
+    let quizScore = 0;
+
+    // Rekapitulasi Data 23 Siswa untuk Dashboard Guru
+    const rekapSiswaData = dataSiswa.map((s, index) => {
+      const skorList = [100, 88, 88, 75, 100, 88, 100, 75, 88, 100, 88, 88, 75, 100, 88, 100, 100, 88, 88, 100, 75, 88, 88];
+      const skor = skorList[index] || 88;
+      const predikat = skor >= 85 ? "Sangat Baik (Bintang)" : (skor >= 70 ? "Baik (Duta)" : "Cukup");
+      return {
+        ...s,
+        skor: skor,
+        status: "Tuntas",
+        predikat: predikat
+      };
+    });
+
+    // --- 5. AUDIO EFFECTS (Murni Web Audio API Sintesis - Bebas Broken Link) ---
+    const AudioEngine = {
+      ctx: null,
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) {
+            this.ctx = new AudioContext();
+          }
+        }
+      },
+      playTone(freq, type, duration, delay = 0) {
+        try {
+          this.init();
+          if (!this.ctx) return;
+          if (this.ctx.state === 'suspended') {
+            this.ctx.resume();
+          }
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, this.ctx.currentTime + delay);
+          gain.gain.setValueAtTime(0.08, this.ctx.currentTime + delay);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + delay + duration);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(this.ctx.currentTime + delay);
+          osc.stop(this.ctx.currentTime + delay + duration);
+        } catch(e) {}
+      },
+      click() {
+        this.playTone(600, 'sine', 0.06);
+      },
+      success() {
+        this.playTone(523.25, 'triangle', 0.1, 0);     // C5
+        this.playTone(659.25, 'triangle', 0.15, 0.08); // E5
+        this.playTone(783.99, 'triangle', 0.25, 0.16); // G5
+      },
+      wrong() {
+        this.playTone(280, 'sawtooth', 0.18, 0);
+        this.playTone(220, 'sawtooth', 0.25, 0.12);
+      },
+      fanfare() {
+        this.playTone(440, 'triangle', 0.1, 0);
+        this.playTone(554.37, 'triangle', 0.1, 0.1);
+        this.playTone(659.25, 'triangle', 0.1, 0.2);
+        this.playTone(880, 'triangle', 0.35, 0.3);
+      }
+    };
+
+    // --- 6. INISIALISASI SAAT HALAMAN DIMUAT ---
+    document.addEventListener("DOMContentLoaded", () => {
+      populateStudentDropdown();
+      renderSimulasiScenario();
+      renderQuizQuestion();
+      renderQuizPalette();
+      renderRekapSiswaTable();
+      renderKunciJawabanAccordion();
+      updateTanggalCetak();
+    });
+
+    // Switch Role di Layar Awal (Siswa vs Guru)
+    function switchLoginRole(role) {
+      AudioEngine.click();
+      currentUserRole = role;
+      const btnSiswa = document.getElementById("btn-tab-role-siswa");
+      const btnGuru = document.getElementById("btn-tab-role-guru");
+      const panelSiswa = document.getElementById("panel-login-siswa");
+      const panelGuru = document.getElementById("panel-login-guru");
+      const btnWrapSiswa = document.getElementById("btn-action-siswa-wrap");
+      const btnWrapGuru = document.getElementById("btn-action-guru-wrap");
+
+      if (role === 'siswa') {
+        btnSiswa.className = "btn btn-sm flex-fill fw-bold rounded-2 btn-success shadow-xs";
+        btnGuru.className = "btn btn-sm flex-fill fw-bold rounded-2 text-secondary";
+        panelSiswa.classList.remove("d-none");
+        panelGuru.classList.add("d-none");
+        btnWrapSiswa.classList.remove("d-none");
+        btnWrapGuru.classList.add("d-none");
+      } else {
+        btnGuru.className = "btn btn-sm flex-fill fw-bold rounded-2 btn-warning text-dark shadow-xs";
+        btnSiswa.className = "btn btn-sm flex-fill fw-bold rounded-2 text-secondary";
+        panelGuru.classList.remove("d-none");
+        panelSiswa.classList.add("d-none");
+        btnWrapGuru.classList.remove("d-none");
+        btnWrapSiswa.classList.add("d-none");
+      }
+    }
+
+    // Mengisi dropdown dengan 23 siswa
+    function populateStudentDropdown() {
+      const select = document.getElementById("select-siswa");
+      select.innerHTML = '<option value="" selected disabled>-- Pilih Nama Kamu Disini --</option>';
+      dataSiswa.forEach(s => {
+        const opt = document.createElement("option");
+        opt.value = s.no;
+        opt.textContent = `${s.no}. ${s.nama} (NIS: ${s.nis})`;
+        select.appendChild(opt);
+      });
+    }
+
+    // Handler ketika nama siswa dipilih di dropdown
+    function pilihSiswaHandler() {
+      AudioEngine.click();
+      const select = document.getElementById("select-siswa");
+      const noAbsen = parseInt(select.value);
+      const siswa = dataSiswa.find(s => s.no === noAbsen);
+
+      if (siswa) {
+        activeStudent = siswa;
+        document.getElementById("display-nama-siswa").textContent = siswa.nama;
+        document.getElementById("display-no-absen").textContent = siswa.no;
+        document.getElementById("display-nis").textContent = siswa.nis;
+        document.getElementById("display-nisn").textContent = siswa.nisn;
+        document.getElementById("card-identitas-terpilih").classList.remove("d-none");
+        document.getElementById("btn-mulai-belajar").removeAttribute("disabled");
+      }
+    }
+
+    // Mulai Pembelajaran sebagai Siswa -> Buka Beranda
+    function mulaiPembelajaran() {
+      if (!activeStudent) return;
+      AudioEngine.success();
+      currentUserRole = 'siswa';
+      
+      // Update data di dashboard & header
+      const roleBadge = document.getElementById("top-user-role-badge");
+      if (roleBadge) {
+        roleBadge.className = "badge bg-primary-subtle text-primary border border-primary-subtle d-none d-md-inline";
+        roleBadge.textContent = "Siswa Kelas VI-a";
+      }
+      document.getElementById("home-greeting-label").textContent = "Selamat Datang di Ruang Belajar Mandiri:";
+      document.getElementById("home-greeting-name").textContent = activeStudent.nama;
+      document.getElementById("home-greeting-no").textContent = activeStudent.no;
+      document.getElementById("home-greeting-nis").textContent = activeStudent.nis;
+      document.getElementById("home-greeting-nisn").textContent = activeStudent.nisn;
+      document.getElementById("top-user-name").textContent = activeStudent.nama;
+      document.getElementById("quiz-student-badge").textContent = `Siswa: ${activeStudent.nama}`;
+
+      // Nav Links: Sembunyikan Ruang Guru untuk siswa
+      const navGuru = document.getElementById("nav-guru");
+      if (navGuru) navGuru.classList.add("d-none");
+      document.getElementById("home-guru-banner").classList.add("d-none");
+      document.getElementById("btn-home-guru-rekap").classList.add("d-none");
+      document.getElementById("btn-home-guru-rekap").classList.remove("d-inline-flex");
+
+      // Buka Zone Nav
+      document.getElementById("nav-links-zone").classList.remove("d-none");
+      document.getElementById("nav-links-zone").classList.add("d-flex");
+      document.getElementById("nav-user-session").classList.remove("d-none");
+      document.getElementById("nav-user-session").classList.add("d-flex");
+
+      navTo('home');
+    }
+
+    // Presensi Masuk Sebagai Guru Pengampu
+    function masukSebagaiGuru() {
+      AudioEngine.fanfare();
+      currentUserRole = 'guru';
+
+      // Header navbar status
+      const roleBadge = document.getElementById("top-user-role-badge");
+      if (roleBadge) {
+        roleBadge.className = "badge bg-warning text-dark border border-warning-subtle d-none d-md-inline";
+        roleBadge.innerHTML = '<i class="bi bi-mortarboard-fill me-1"></i>Guru Pengampu';
+      }
+      document.getElementById("top-user-name").textContent = activeGuru.nama;
+
+      // Nav Links: Tampilkan tombol Ruang Guru
+      const navGuru = document.getElementById("nav-guru");
+      if (navGuru) navGuru.classList.remove("d-none");
+
+      // Home Greeting
+      document.getElementById("home-greeting-label").textContent = "Selamat Datang di Ruang Pengampu:";
+      document.getElementById("home-greeting-name").textContent = `Bapak ${activeGuru.nama}`;
+      document.getElementById("home-greeting-no").textContent = "Pengembang Media";
+      document.getElementById("home-greeting-nis").textContent = "Kelas VI-a";
+      document.getElementById("home-greeting-nisn").textContent = "UPT SPF SD Inpres 105285";
+      document.getElementById("quiz-student-badge").textContent = "Pratinjau Guru";
+
+      // Tampilkan banner khusus guru & tombol rekap
+      document.getElementById("home-guru-banner").classList.remove("d-none");
+      document.getElementById("btn-home-guru-rekap").classList.remove("d-none");
+      document.getElementById("btn-home-guru-rekap").classList.add("d-inline-flex");
+
+      // Buka Zone Nav
+      document.getElementById("nav-links-zone").classList.remove("d-none");
+      document.getElementById("nav-links-zone").classList.add("d-flex");
+      document.getElementById("nav-user-session").classList.remove("d-none");
+      document.getElementById("nav-user-session").classList.add("d-flex");
+
+      renderRekapSiswaTable();
+      renderKunciJawabanAccordion();
+
+      navTo('home');
+    }
+
+    // Render Tabel Rekap 23 Siswa untuk Guru
+    function renderRekapSiswaTable() {
+      const tbody = document.getElementById("tabel-rekap-siswa-body");
+      if (!tbody) return;
+      tbody.innerHTML = "";
+
+      let totalSkor = 0;
+      rekapSiswaData.forEach(s => {
+        totalSkor += s.skor;
+        const tr = document.createElement("tr");
+        const predikatBadgeClass = s.skor >= 85 ? "bg-success-subtle text-success border border-success-subtle" : (s.skor >= 70 ? "bg-primary-subtle text-primary border border-primary-subtle" : "bg-warning-subtle text-warning border");
+
+        tr.innerHTML = `
+          <td class="text-center fw-bold">${s.no}</td>
+          <td class="text-center font-monospace">${s.nis}</td>
+          <td class="text-center font-monospace">${s.nisn}</td>
+          <td class="fw-semibold text-dark">${s.nama}</td>
+          <td class="text-center"><span class="badge bg-success-subtle text-success"><i class="bi bi-check-circle me-1"></i>${s.status}</span></td>
+          <td class="text-center fw-bold fs-6">${s.skor}</td>
+          <td class="text-center"><span class="badge ${predikatBadgeClass}">${s.predikat}</span></td>
+          <td class="no-print text-center">
+            <button class="btn btn-sm btn-outline-success py-1 px-2 fw-semibold" onclick="cetakRaporSiswaDariGuru(${s.no})" title="Cetak Rapor/Sertifikat Siswa">
+              <i class="bi bi-printer me-1"></i> Cetak Rapor
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      const rataRata = (totalSkor / rekapSiswaData.length).toFixed(1);
+      const kpiRata = document.getElementById("kpi-rata-rata");
+      if (kpiRata) kpiRata.textContent = rataRata;
+    }
+
+    // Cetak Rapor Langsung dari Baris Tabel Guru
+    function cetakRaporSiswaDariGuru(noAbsen) {
+      AudioEngine.click();
+      const siswa = rekapSiswaData.find(s => s.no === noAbsen);
+      if (!siswa) return;
+
+      activeStudent = siswa;
+      quizScore = siswa.skor;
+      generateRapor();
+      navTo('rapor');
+    }
+
+    // Cetak Rekap Nilai Kelas VI-a
+    function cetakRekapKelas() {
+      AudioEngine.click();
+      window.print();
+    }
+
+    // Render Kunci Jawaban & Rubrik Capaian untuk Guru
+    function renderKunciJawabanAccordion() {
+      const container = document.getElementById("accordionKunciJawaban");
+      if (!container || container.children.length > 0) return;
+
+      dataKuis.forEach((q, idx) => {
+        const item = document.createElement("div");
+        item.className = "accordion-item border mb-2 rounded-2 overflow-hidden";
+        const collapseId = `kunciCollapse${idx}`;
+        const hurufOpsi = ['A', 'B', 'C', 'D'];
+
+        item.innerHTML = `
+          <h2 class="accordion-header" id="headingKunci${idx}">
+            <button class="accordion-button collapsed py-2 px-3 fw-semibold small" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseId}">
+              <span class="badge bg-primary me-2">Soal ${idx + 1}</span>
+              <span class="text-truncate me-2">${q.topic}: ${q.pertanyaan.substring(0, 75)}...</span>
+              <span class="badge bg-success ms-auto">Kunci: ${hurufOpsi[q.jawaban]}</span>
+            </button>
+          </h2>
+          <div id="${collapseId}" class="accordion-collapse collapse" data-bs-parent="#accordionKunciJawaban">
+            <div class="accordion-body bg-light small">
+              <div class="fw-bold mb-2 text-dark">${idx + 1}. ${q.pertanyaan}</div>
+              <div class="p-2 bg-white rounded border mb-2">
+                <strong>Kunci Jawaban (${hurufOpsi[q.jawaban]}):</strong> ${q.options[q.jawaban]}
+              </div>
+              <div class="text-secondary mb-1">
+                <strong>Pembahasan Pedagogis:</strong> ${q.penjelasan}
+              </div>
+              <div class="text-muted" style="font-size: 0.75rem;">
+                <i class="bi bi-tag-fill me-1 text-primary"></i> Capaian Profil Pelajar Pancasila: Berkebhinekaan Global & Penguatan Karakter Kearifan Lokal Sumut.
+              </div>
+            </div>
+          </div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    // Navigasi View SPA
+    function navTo(viewId, subTab = null) {
+      AudioEngine.click();
+      const views = document.querySelectorAll('.app-view');
+      views.forEach(v => v.classList.remove('active-view'));
+
+      const target = document.getElementById(`view-${viewId}`);
+      if (target) {
+        target.classList.add('active-view');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Update Nav Button Active state
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById(`nav-${viewId}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      // Jika ada instruksi sub-tab khusus (misal modul-2)
+      if (viewId === 'modul-2' && subTab) {
+        const tabTrigger = document.getElementById(`tab-${subTab}`);
+        if (tabTrigger) {
+          const bsTab = new bootstrap.Tab(tabTrigger);
+          bsTab.show();
+        }
+      }
+    }
+
+    // Konfirmasi Logout / Ganti Siswa atau Guru
+    function konfirmasiLogout() {
+      const pesan = currentUserRole === 'guru' 
+        ? "Apakah Bapak Guru ingin mengakhiri sesi pengampu dan kembali ke halaman pembuka?" 
+        : "Apakah kamu yakin ingin keluar dan mengganti siswa? Sesi belajar saat ini akan direset.";
+
+      if (confirm(pesan)) {
+        AudioEngine.click();
+        currentUserRole = 'siswa';
+        activeStudent = null;
+        studentAnswers = new Array(dataKuis.length).fill(null);
+        currentQuizIndex = 0;
+        quizScore = 0;
+
+        // Reset dropdown & kartu identitas
+        document.getElementById("select-siswa").selectedIndex = 0;
+        document.getElementById("card-identitas-terpilih").classList.add("d-none");
+        document.getElementById("btn-mulai-belajar").setAttribute("disabled", "true");
+
+        // Sembunyikan Ruang Guru Nav & Home Banner
+        const navGuru = document.getElementById("nav-guru");
+        if (navGuru) navGuru.classList.add("d-none");
+        document.getElementById("home-guru-banner").classList.add("d-none");
+        document.getElementById("btn-home-guru-rekap").classList.add("d-none");
+        document.getElementById("btn-home-guru-rekap").classList.remove("d-inline-flex");
+
+        // Sembunyikan Nav Zone
+        document.getElementById("nav-links-zone").classList.remove("d-flex");
+        document.getElementById("nav-links-zone").classList.add("d-none");
+        document.getElementById("nav-user-session").classList.remove("d-flex");
+        document.getElementById("nav-user-session").classList.add("d-none");
+
+        // Kembali ke Welcome
+        navTo('welcome');
+      }
+    }
+
+    // --- 7. LOGIKA SIMULASI DILEMA SISWA ---
+    function renderSimulasiScenario() {
+      const sim = dataSimulasi[currentSimulasiIndex];
+      document.getElementById("sim-scenario-badge").textContent = `Kasus ${currentSimulasiIndex + 1} dari ${dataSimulasi.length}`;
+      document.getElementById("sim-kearifan-target").textContent = sim.kearifan;
+      document.getElementById("sim-scenario-title").textContent = sim.title;
+      document.getElementById("sim-scenario-story").textContent = sim.story;
+
+      const container = document.getElementById("sim-options-container");
+      container.innerHTML = "";
+
+      sim.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "scenario-option-btn";
+        btn.innerHTML = `
+          <span class="badge bg-light text-dark border me-1">${String.fromCharCode(65 + idx)}</span>
+          <span class="flex-grow-1">${opt.text}</span>
+        `;
+        btn.onclick = () => pilihSimulasiOption(idx, opt, btn);
+        container.appendChild(btn);
+      });
+
+      // Sembunyikan feedback box saat ganti skenario
+      const fbBox = document.getElementById("sim-feedback-box");
+      fbBox.classList.add("d-none");
+    }
+
+    function pilihSimulasiOption(index, option, buttonElement) {
+      const allButtons = document.querySelectorAll(".scenario-option-btn");
+      allButtons.forEach(b => {
+        b.disabled = true;
+        b.classList.remove("selected-correct", "selected-wrong");
+      });
+
+      const fbBox = document.getElementById("sim-feedback-box");
+      const fbIcon = document.getElementById("sim-feedback-icon");
+      const fbStatus = document.getElementById("sim-feedback-status");
+      const fbText = document.getElementById("sim-feedback-text");
+      const nextBtn = document.getElementById("sim-next-btn");
+
+      fbBox.classList.remove("d-none", "bg-success-subtle", "border-success", "bg-danger-subtle", "border-danger");
+
+      if (option.correct) {
+        AudioEngine.success();
+        buttonElement.classList.add("selected-correct");
+        fbBox.classList.add("bg-success-subtle", "border-success");
+        fbIcon.className = "bi bi-check-circle-fill text-success fs-5";
+        fbStatus.className = "text-success fw-bold";
+        fbStatus.textContent = "Keputusan Sangat Bijak!";
+      } else {
+        AudioEngine.wrong();
+        buttonElement.classList.add("selected-wrong");
+        fbBox.classList.add("bg-danger-subtle", "border-danger");
+        fbIcon.className = "bi bi-x-circle-fill text-danger fs-5";
+        fbStatus.className = "text-danger fw-bold";
+        fbStatus.textContent = "Renungkan Kembali";
+      }
+
+      fbText.textContent = option.feedback;
+
+      if (currentSimulasiIndex >= dataSimulasi.length - 1) {
+        nextBtn.innerHTML = 'Selesai & Ke Kuis Asesmen <i class="bi bi-arrow-right ms-1"></i>';
+      } else {
+        nextBtn.innerHTML = 'Lanjut Kasus Berikutnya <i class="bi bi-arrow-right ms-1"></i>';
+      }
+    }
+
+    function simulasiNextHandler() {
+      AudioEngine.click();
+      if (currentSimulasiIndex < dataSimulasi.length - 1) {
+        currentSimulasiIndex++;
+        renderSimulasiScenario();
+      } else {
+        // Selesai simulasi, arahkan ke Kuis
+        navTo('kuis');
+      }
+    }
+
+    // --- 8. LOGIKA KUIS ASESMEN (8 SOAL) ---
+    function renderQuizQuestion() {
+      const q = dataKuis[currentQuizIndex];
+      document.getElementById("quiz-current-num").textContent = currentQuizIndex + 1;
+      document.getElementById("quiz-total-num").textContent = dataKuis.length;
+      document.getElementById("quiz-topic-badge").textContent = `Topik: ${q.topic}`;
+      document.getElementById("quiz-question-text").textContent = `${currentQuizIndex + 1}. ${q.pertanyaan}`;
+
+      // Progress bar
+      const progressPercent = ((currentQuizIndex + 1) / dataKuis.length) * 100;
+      document.getElementById("quiz-progress-bar").style.width = `${progressPercent}%`;
+
+      // Render Options
+      const container = document.getElementById("quiz-options-container");
+      container.innerHTML = "";
+
+      q.options.forEach((optText, optIdx) => {
+        const optDiv = document.createElement("div");
+        const isSelected = studentAnswers[currentQuizIndex] === optIdx;
+        optDiv.className = `quiz-option ${isSelected ? 'active' : ''}`;
+        optDiv.innerHTML = `
+          <div class="rounded-circle border d-flex align-items-center justify-content-center ${isSelected ? 'bg-primary text-white border-primary' : 'bg-light text-secondary'}" style="width: 28px; height: 28px; min-width: 28px; font-size: 0.85rem; font-weight: bold;">
+            ${String.fromCharCode(65 + optIdx)}
+          </div>
+          <div class="flex-grow-1">${optText}</div>
+        `;
+        optDiv.onclick = () => selectQuizOption(optIdx);
+        container.appendChild(optDiv);
+      });
+
+      // Tombol Prev / Next / Submit
+      const prevBtn = document.getElementById("quiz-prev-btn");
+      const nextBtn = document.getElementById("quiz-next-btn");
+      const submitBtn = document.getElementById("quiz-submit-btn");
+
+      prevBtn.disabled = (currentQuizIndex === 0);
+
+      if (currentQuizIndex === dataKuis.length - 1) {
+        nextBtn.classList.add("d-none");
+        submitBtn.classList.remove("d-none");
+      } else {
+        nextBtn.classList.remove("d-none");
+        submitBtn.classList.add("d-none");
+      }
+
+      updateQuizPalette();
+    }
+
+    function selectQuizOption(optIdx) {
+      AudioEngine.click();
+      studentAnswers[currentQuizIndex] = optIdx;
+      renderQuizQuestion();
+    }
+
+    function quizPrevHandler() {
+      AudioEngine.click();
+      if (currentQuizIndex > 0) {
+        currentQuizIndex--;
+        renderQuizQuestion();
+      }
+    }
+
+    function quizNextHandler() {
+      AudioEngine.click();
+      if (currentQuizIndex < dataKuis.length - 1) {
+        currentQuizIndex++;
+        renderQuizQuestion();
+      }
+    }
+
+    function renderQuizPalette() {
+      const palette = document.getElementById("quiz-palette");
+      palette.innerHTML = "";
+      dataKuis.forEach((_, idx) => {
+        const btn = document.createElement("button");
+        btn.id = `palette-btn-${idx}`;
+        btn.className = "btn btn-sm btn-outline-secondary px-3 py-1 fw-bold";
+        btn.textContent = idx + 1;
+        btn.onclick = () => {
+          AudioEngine.click();
+          currentQuizIndex = idx;
+          renderQuizQuestion();
+        };
+        palette.appendChild(btn);
+      });
+      updateQuizPalette();
+    }
+
+    function updateQuizPalette() {
+      dataKuis.forEach((_, idx) => {
+        const btn = document.getElementById(`palette-btn-${idx}`);
+        if (!btn) return;
+
+        btn.className = "btn btn-sm px-3 py-1 fw-bold";
+        const hasAnswered = studentAnswers[idx] !== null;
+
+        if (idx === currentQuizIndex) {
+          btn.classList.add("btn-primary");
+        } else if (hasAnswered) {
+          btn.classList.add("btn-success");
+        } else {
+          btn.classList.add("btn-outline-secondary");
+        }
+      });
+    }
+
+    // Submit Kuis & Evaluasi Nilai
+    function quizSubmitHandler() {
+      const unAnswered = studentAnswers.filter(a => a === null).length;
+      if (unAnswered > 0) {
+        if (!confirm(`Ada ${unAnswered} soal yang belum kamu jawab. Apakah kamu yakin ingin mengumpulkan kuis sekarang?`)) {
+          return;
+        }
+      }
+
+      AudioEngine.fanfare();
+
+      // Hitung skor (0 - 100)
+      let correctCount = 0;
+      dataKuis.forEach((q, idx) => {
+        if (studentAnswers[idx] === q.jawaban) {
+          correctCount++;
+        }
+      });
+
+      quizScore = Math.round((correctCount / dataKuis.length) * 100);
+
+      // Sinkronisasi nilai siswa ke rekap data kelas guru
+      if (activeStudent) {
+        const sIdx = rekapSiswaData.findIndex(s => s.no === activeStudent.no);
+        if (sIdx !== -1) {
+          rekapSiswaData[sIdx].skor = quizScore;
+          rekapSiswaData[sIdx].status = "Tuntas";
+          rekapSiswaData[sIdx].predikat = quizScore >= 85 ? "Sangat Baik (Bintang)" : (quizScore >= 70 ? "Baik (Duta)" : "Cukup");
+          renderRekapSiswaTable();
+        }
+      }
+
+      generateRapor();
+      navTo('rapor');
+    }
+
+    // --- 9. GENERATE KARTU CAPAIAN BELAJAR / RAPOR RESMI ---
+    function generateRapor() {
+      if (!activeStudent) return;
+
+      document.getElementById("rapor-nama").textContent = activeStudent.nama;
+      document.getElementById("rapor-absen").textContent = activeStudent.no;
+      document.getElementById("rapor-nis").textContent = activeStudent.nis;
+      document.getElementById("rapor-nisn").textContent = activeStudent.nisn;
+      document.getElementById("rapor-skor-angka").textContent = quizScore;
+
+      const predikatBadge = document.getElementById("rapor-predikat-badge");
+      const seal = document.getElementById("rapor-seal-skor");
+      const catatanGuru = document.getElementById("rapor-catatan-guru");
+
+      if (quizScore >= 85) {
+        predikatBadge.textContent = "Predikat: Sangat Baik (Bintang Kebhinekaan)";
+        predikatBadge.className = "fw-bold small text-success";
+        seal.style.background = "radial-gradient(circle, #fef08a 0%, #ca8a04 100%)";
+        catatanGuru.innerHTML = `
+          <strong>Apresiasi Istimewa:</strong> Selamat kepada Ananda <strong>${activeStudent.nama}</strong>! Ananda telah memahami dengan sangat mendalam nilai-nilai luhur kearifan lokal Melayu (sopan santun & musyawarah), Karo (Rakut Sitelu & gotong royong Aron), serta Simalungun (Habonaron Do Bona). Teruslah menjadi teladan kebhinekaan di Kelas VI-a!
+        `;
+      } else if (quizScore >= 70) {
+        predikatBadge.textContent = "Predikat: Baik (Duta Kearifan Lokal)";
+        predikatBadge.className = "fw-bold small text-primary";
+        seal.style.background = "radial-gradient(circle, #bae6fd 0%, #0284c7 100%)";
+        catatanGuru.innerHTML = `
+          <strong>Capaian Baik:</strong> Ananda <strong>${activeStudent.nama}</strong> telah menguasai sebagian besar materi kearifan lokal Sumatera Utara dengan baik. Pertahankan kejujuran dan budi pekerti santun dalam kehidupan bermasyarakat sehari-hari.
+        `;
+      } else {
+        predikatBadge.textContent = "Predikat: Cukup (Perlu Pemantapan)";
+        predikatBadge.className = "fw-bold small text-warning";
+        seal.style.background = "radial-gradient(circle, #fed7aa 0%, #ea580c 100%)";
+        catatanGuru.innerHTML = `
+          <strong>Motivasi Belajar:</strong> Ananda <strong>${activeStudent.nama}</strong> telah berusaha menyelesaikan pembelajaran. Disarankan untuk membaca kembali materi Modul 2 tentang tradisi Melayu, Karo, dan Simalungun agar semakin mantap dalam mempraktikkan kebaikan budaya.
+        `;
+      }
+
+      updateTanggalCetak();
+    }
+
+    function updateTanggalCetak() {
+      const today = new Date();
+      const options = { day: 'numeric', month: 'long', year: 'numeric' };
+      const tanggalFormat = today.toLocaleDateString('id-ID', options);
+      const elRapor = document.getElementById("rapor-tanggal-cetak");
+      if (elRapor) {
+        elRapor.textContent = `Tandam Hilir I, ${tanggalFormat}`;
+      }
+      const elRekap = document.getElementById("rekap-tanggal-cetak");
+      if (elRekap) {
+        elRekap.textContent = `Tandam Hilir I, ${tanggalFormat}`;
+      }
+    }
+
+    function cetakRapor() {
+      AudioEngine.click();
+      window.print();
+    }
+
+    function ulangiKuis() {
+      if (confirm("Apakah kamu ingin mengulang kuis asesmen dari nomor 1?")) {
+        AudioEngine.click();
+        studentAnswers = new Array(dataKuis.length).fill(null);
+        currentQuizIndex = 0;
+        renderQuizQuestion();
+        renderQuizPalette();
+        navTo('kuis');
+      }
+    }
+  </script>
+
+</body>
+</html>
