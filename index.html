@@ -1565,15 +1565,15 @@
           <div class="col-6 col-md-3">
             <div class="content-card p-3 text-center">
               <div class="text-muted small">Ketuntasan Belajar</div>
-              <div class="h3 fw-bold text-success my-1" id="kpi-tuntas">23 / 23</div>
-              <span class="text-muted small">100% Mengikuti</span>
+              <div class="h3 fw-bold text-success my-1" id="kpi-tuntas">0 / 23</div>
+              <span class="text-muted small" id="kpi-tuntas-sub">0% Ketuntasan</span>
             </div>
           </div>
           <div class="col-6 col-md-3">
             <div class="content-card p-3 text-center">
               <div class="text-muted small">Rata-rata Nilai</div>
-              <div class="h3 fw-bold text-primary my-1" id="kpi-rata-rata">89.1</div>
-              <span class="text-primary small fw-semibold">Predikat: Sangat Baik</span>
+              <div class="h3 fw-bold text-primary my-1" id="kpi-rata-rata">-</div>
+              <span class="text-muted small" id="kpi-rata-sub">Belum ada data kuis</span>
             </div>
           </div>
           <div class="col-6 col-md-3">
@@ -1951,16 +1951,13 @@
     let studentAnswers = new Array(dataKuis.length).fill(null);
     let quizScore = 0;
 
-    // Rekapitulasi Data 23 Siswa untuk Dashboard Guru
-    const rekapSiswaData = dataSiswa.map((s, index) => {
-      const skorList = [100, 88, 88, 75, 100, 88, 100, 75, 88, 100, 88, 88, 75, 100, 88, 100, 100, 88, 88, 100, 75, 88, 88];
-      const skor = skorList[index] || 88;
-      const predikat = skor >= 85 ? "Sangat Baik (Bintang)" : (skor >= 70 ? "Baik (Duta)" : "Cukup");
+    // Rekapitulasi Data 23 Siswa untuk Dashboard Guru (Awal: Nilai Kosong / Belum Mengerjakan)
+    const rekapSiswaData = dataSiswa.map(s => {
       return {
         ...s,
-        skor: skor,
-        status: "Tuntas",
-        predikat: predikat
+        skor: null,
+        status: "Belum Mengerjakan",
+        predikat: "-"
       };
     });
 
@@ -2168,31 +2165,81 @@
       tbody.innerHTML = "";
 
       let totalSkor = 0;
+      let countTuntas = 0;
+
       rekapSiswaData.forEach(s => {
-        totalSkor += s.skor;
+        const isTuntas = (s.status === "Tuntas" && s.skor !== null);
+        if (isTuntas) {
+          totalSkor += s.skor;
+          countTuntas++;
+        }
+
         const tr = document.createElement("tr");
-        const predikatBadgeClass = s.skor >= 85 ? "bg-success-subtle text-success border border-success-subtle" : (s.skor >= 70 ? "bg-primary-subtle text-primary border border-primary-subtle" : "bg-warning-subtle text-warning border");
+
+        // Format Status Belajar
+        const statusBadge = isTuntas 
+          ? `<span class="badge bg-success-subtle text-success border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Tuntas</span>`
+          : `<span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle"><i class="bi bi-clock me-1"></i>Belum Mengerjakan</span>`;
+
+        // Format Skor: '-' jika belum selesai
+        const skorDisplay = isTuntas 
+          ? `<span class="text-dark fw-bold fs-6">${s.skor}</span>`
+          : `<span class="text-muted fw-bold">-</span>`;
+
+        // Format Predikat: '-' jika belum selesai
+        let predikatDisplay = `<span class="text-muted">-</span>`;
+        if (isTuntas) {
+          const predikatBadgeClass = s.skor >= 85 
+            ? "bg-success-subtle text-success border border-success-subtle" 
+            : (s.skor >= 70 ? "bg-primary-subtle text-primary border border-primary-subtle" : "bg-warning-subtle text-warning border");
+          predikatDisplay = `<span class="badge ${predikatBadgeClass}">${s.predikat}</span>`;
+        }
+
+        // Tombol Aksi: Aktif hanya jika siswa sudah selesai kuis
+        const actionBtn = isTuntas
+          ? `<button class="btn btn-sm btn-outline-success py-1 px-2 fw-semibold" onclick="cetakRaporSiswaDariGuru(${s.no})" title="Cetak Rapor/Sertifikat Siswa">
+              <i class="bi bi-printer me-1"></i> Cetak Rapor
+            </button>`
+          : `<button class="btn btn-sm btn-outline-secondary py-1 px-2 text-muted" onclick="cetakRaporSiswaDariGuru(${s.no})" title="Siswa belum mengerjakan kuis" style="opacity: 0.7;">
+              <i class="bi bi-printer me-1"></i> Belum Ada Rapor
+            </button>`;
 
         tr.innerHTML = `
           <td class="text-center fw-bold">${s.no}</td>
           <td class="text-center font-monospace">${s.nis}</td>
           <td class="text-center font-monospace">${s.nisn}</td>
           <td class="fw-semibold text-dark">${s.nama}</td>
-          <td class="text-center"><span class="badge bg-success-subtle text-success"><i class="bi bi-check-circle me-1"></i>${s.status}</span></td>
-          <td class="text-center fw-bold fs-6">${s.skor}</td>
-          <td class="text-center"><span class="badge ${predikatBadgeClass}">${s.predikat}</span></td>
-          <td class="no-print text-center">
-            <button class="btn btn-sm btn-outline-success py-1 px-2 fw-semibold" onclick="cetakRaporSiswaDariGuru(${s.no})" title="Cetak Rapor/Sertifikat Siswa">
-              <i class="bi bi-printer me-1"></i> Cetak Rapor
-            </button>
-          </td>
+          <td class="text-center">${statusBadge}</td>
+          <td class="text-center">${skorDisplay}</td>
+          <td class="text-center">${predikatDisplay}</td>
+          <td class="no-print text-center">${actionBtn}</td>
         `;
         tbody.appendChild(tr);
       });
 
-      const rataRata = (totalSkor / rekapSiswaData.length).toFixed(1);
+      // Update KPI Cards di Ruang Guru
+      const kpiTuntas = document.getElementById("kpi-tuntas");
+      const kpiTuntasSub = document.getElementById("kpi-tuntas-sub");
+      if (kpiTuntas) {
+        kpiTuntas.textContent = `${countTuntas} / ${rekapSiswaData.length}`;
+      }
+      if (kpiTuntasSub) {
+        const percentTuntas = Math.round((countTuntas / rekapSiswaData.length) * 100);
+        kpiTuntasSub.textContent = `${percentTuntas}% Ketuntasan`;
+      }
+
       const kpiRata = document.getElementById("kpi-rata-rata");
-      if (kpiRata) kpiRata.textContent = rataRata;
+      const kpiRataSub = document.getElementById("kpi-rata-sub");
+      if (kpiRata) {
+        if (countTuntas > 0) {
+          const rataRata = (totalSkor / countTuntas).toFixed(1);
+          kpiRata.textContent = rataRata;
+          if (kpiRataSub) kpiRataSub.textContent = `Dari ${countTuntas} siswa tuntas`;
+        } else {
+          kpiRata.textContent = "-";
+          if (kpiRataSub) kpiRataSub.textContent = "Belum ada data kuis";
+        }
+      }
     }
 
     // Cetak Rapor Langsung dari Baris Tabel Guru
@@ -2200,6 +2247,11 @@
       AudioEngine.click();
       const siswa = rekapSiswaData.find(s => s.no === noAbsen);
       if (!siswa) return;
+
+      if (siswa.status !== "Tuntas" || siswa.skor === null) {
+        alert(`Ananda ${siswa.nama} belum menyelesaikan kuis asesmen.\n\nNilai dan Kartu Capaian Belajar baru dapat dicetak setelah siswa yang bersangkutan menyelesaikan 8 butir soal kuis.`);
+        return;
+      }
 
       activeStudent = siswa;
       quizScore = siswa.skor;
